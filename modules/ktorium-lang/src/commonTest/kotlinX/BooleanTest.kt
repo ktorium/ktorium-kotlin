@@ -2,7 +2,7 @@ package org.ktorium.sdk.lang
 
 import kotlin.test.*
 
-internal class BooleanTests {
+internal class BooleanTest {
 
     @Test
     fun orTrue_notNull_returnSameBooleanValue() {
