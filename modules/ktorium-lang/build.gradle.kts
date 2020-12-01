@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import io.gitlab.arturbosch.detekt.Detekt
 
 buildscript {
     repositories {
@@ -9,6 +9,7 @@ buildscript {
 
 plugins {
     kotlin("multiplatform")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 configurations.all {
@@ -91,6 +92,26 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
+            }
+        }
+    }
+}
+
+tasks {
+    val detekt by getting(Detekt::class) {
+        config.setFrom(files("${rootProject.rootDir}/config/detekt/detekt.yml"))
+        setSource(files(projectDir))
+        include("**/*.kt")
+        include("**/*.kts")
+        exclude("**/resources/**")
+        exclude("**/build/**")
+        buildUponDefaultConfig = false
+        parallel = true
+        jvmTarget = "11"
+        reports {
+            html {
+                enabled = true
+                destination = file("build/reports/detekt.html")
             }
         }
     }
