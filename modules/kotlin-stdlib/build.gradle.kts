@@ -64,7 +64,7 @@ kotlin {
                 apiVersion = "1.4"
                 progressiveMode = true
 
-                val isTest = toString().endsWith("test")
+                val isTest = name.endsWith("Test")
                 if(isTest) {
                     useExperimentalAnnotation("kotlin.contracts.ExperimentalContracts")
                 }
