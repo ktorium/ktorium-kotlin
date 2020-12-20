@@ -7,19 +7,33 @@ import kotlin.contracts.contract
 /**
  * Returns `this` value if it is not `null`, otherwise false.
  */
-public fun Boolean?.orFalse(): Boolean = this ?: false
+@ExperimentalContracts
+public fun Boolean?.orFalse(): Boolean {
+    contract {
+        returns(false) implies (this@orFalse == null)
+    }
+
+    return this ?: false
+}
 
 /**
  * Returns `this` value if it is not `null`, otherwise true.
  */
-public fun Boolean?.orTrue(): Boolean = this ?: true
+@ExperimentalContracts
+public fun Boolean?.orTrue(): Boolean {
+    contract {
+        returns(true) implies (this@orTrue == null)
+    }
+
+    return this ?: true
+}
 
 /**
  * Will execute [block] if this [Boolean] is true.
  *
  * @return This boolean
  */
-@OptIn(ExperimentalContracts::class)
+@ExperimentalContracts
 public inline fun Boolean.ifTrue(block: () -> Unit): Boolean {
     contract {
         callsInPlace(block, InvocationKind.AT_MOST_ONCE)
@@ -34,7 +48,7 @@ public inline fun Boolean.ifTrue(block: () -> Unit): Boolean {
  *
  * @return This boolean
  */
-@OptIn(ExperimentalContracts::class)
+@ExperimentalContracts
 public inline fun Boolean.ifFalse(block: () -> Unit): Boolean {
     contract {
         callsInPlace(block, InvocationKind.AT_MOST_ONCE)
