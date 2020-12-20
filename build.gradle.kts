@@ -12,7 +12,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.ktorium.sdk"
+    group = "com.ktorium.kotlin"
     version = "0.0.1"
 
     repositories {

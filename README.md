@@ -1,3 +1,3 @@
-# ktorium-sdk
+# ktorium-kotlin
 
-Extensions to the Kotlin standard libraries
+Extensions to the Kotlin standard libraries.

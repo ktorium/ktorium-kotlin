@@ -5,11 +5,11 @@ pluginManagement {
     }
 }
 
-rootProject.name = "ktorium-sdk"
+rootProject.name = "ktorium-kotlin"
 
 listOf(
-        "ktorium-bom",
-        "ktorium-lang"
+        "kotlin-bom",
+        "kotlin-stdlib"
 ).forEach {
     include(it)
     project(":${it}").projectDir = File("modules/$it")

@@ -1,4 +1,4 @@
-package org.ktorium.sdk.lang
+package org.ktorium.kotlin.stdlib
 
 /**
  * Returns the first element matching the given [predicate], or the result of calling the [defaultValue] function if no such element is found.
@@ -30,3 +30,5 @@ public inline fun <T> Iterable<T>.lastOrElse(predicate: (T) -> Boolean, defaultV
     @Suppress("UNCHECKED_CAST")
     return last as T
 }
+
+public fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)

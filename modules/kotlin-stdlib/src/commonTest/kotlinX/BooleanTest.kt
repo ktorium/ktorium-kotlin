@@ -1,4 +1,4 @@
-package org.ktorium.sdk.lang
+package org.ktorium.kotlin.stdlib
 
 import kotlin.test.*
 
