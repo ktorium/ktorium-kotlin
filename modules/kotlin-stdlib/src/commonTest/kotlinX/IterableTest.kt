@@ -43,4 +43,13 @@ internal class IterableTest {
         assertEquals(value, first)
     }
 
+    @Test
+    fun dropFirst_notEmpty_dropOne() {
+        val numbers = (1..10)
+
+        val tail = numbers.dropFirst()
+
+        assertEquals(tail.size, numbers.count() - 1)
+    }
+
 }
