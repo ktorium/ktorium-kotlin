@@ -1,0 +1,29 @@
+# EditorConfig is awesome: https://editorconfig.org/
+
+# This is the file in the root of the project.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+max_line_length = 180
+indent_style = space
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{cmd,bat}]
+end_of_line = crlf
+
+[*.xml]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
