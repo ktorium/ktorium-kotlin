@@ -41,7 +41,7 @@ internal class BooleanTest {
     }
 
     @Test
-    fun ifTrue_call_returnTrue(){
+    fun ifTrue_call_returnTrue() {
         var number = 1
         val value = true
 
@@ -52,7 +52,7 @@ internal class BooleanTest {
     }
 
     @Test
-    fun ifFalse_call_returnFalse(){
+    fun ifFalse_call_returnFalse() {
         var number = 1
         val value = false
 
