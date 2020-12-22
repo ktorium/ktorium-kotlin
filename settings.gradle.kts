@@ -8,8 +8,8 @@ pluginManagement {
 rootProject.name = "ktorium-kotlin"
 
 listOf(
-        "kotlin-bom",
-        "kotlin-stdlib"
+        "ktorium-bom",
+        "ktorium-stdlib"
 ).forEach {
     include(it)
     project(":${it}").projectDir = File("modules/$it")

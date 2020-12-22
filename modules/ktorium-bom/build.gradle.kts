@@ -6,6 +6,6 @@ description = "Bill of materials to make sure a consistent set of versions are u
 
 dependencies {
     constraints {
-        api(project(":kotlin-stdlib"))
+        api(project(":ktorium-stdlib"))
     }
 }

@@ -5,10 +5,10 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
 @ExperimentalContracts
-public inline fun <T : Any> T?.ifNull(defaultValue: () -> T): T {
+public inline fun <T, C : Collection<T>, O> C.ifNotEmpty(body: C.() -> O?): O? {
     contract {
-        callsInPlace(defaultValue, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(body, InvocationKind.AT_MOST_ONCE)
     }
 
-    return this ?: defaultValue()
+    return if (isNotEmpty()) this.body() else null
 }
