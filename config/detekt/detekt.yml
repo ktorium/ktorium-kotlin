@@ -112,7 +112,7 @@ complexity:
   TooManyFunctions:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-    thresholdInFiles: 11
+    thresholdInFiles: 50
     thresholdInClasses: 11
     thresholdInInterfaces: 11
     thresholdInObjects: 11
@@ -216,6 +216,7 @@ exceptions:
     allowedExceptionNameRegex: '_|(ignore|expected).*'
   TooGenericExceptionThrown:
     active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     exceptionNames:
       - Error
       - Exception

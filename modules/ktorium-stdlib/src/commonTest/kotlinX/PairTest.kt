@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 internal class PairTest {
 
     @Test
-    fun swap_twoValues_pairSwapped(){
+    fun swap_twoValues_pairSwapped() {
         val pair = 1 to 2
 
         val result = pair.swap()
