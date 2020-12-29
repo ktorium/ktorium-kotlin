@@ -7,7 +7,7 @@ internal class ListTest {
 
     @Test
     fun dropLastUntil_predicateNeverTrue_returnsEmpty() {
-        val values = (1..10).toList().toTypedArray()
+        val values = (1..10).toList()
 
         val result = values.dropLastUntil {
             false
@@ -18,7 +18,7 @@ internal class ListTest {
 
     @Test
     fun dropLastUntil_predicateTrueOnThree_returnsEmpty() {
-        val values = (1..10).toList().toTypedArray()
+        val values = (1..10).toList()
 
         val result = values.dropLastUntil {
             it == 3
@@ -28,31 +28,31 @@ internal class ListTest {
     }
 
     @Test
+    fun lastOrDefault_lastEvenNumber_returnFirstPredicate() {
+        val numbers = (1..11).toList()
+
+        val first = numbers.lastOrDefault({ it % 2 == 0 }, 33)
+
+        assertEquals(10, first)
+    }
+
+    @Test
     fun lastOrElse_lastEvenNumber_returnLastPredicate() {
-        val numbers = (1..10).toList()
+        val numbers = (1..11).toList()
 
-        val last = numbers.lastOrElse({ it % 3 == 0 }, { 33 })
+        val last = numbers.lastOrElse({ it % 2 == 0 }, { 33 })
 
-        assertEquals(9, last)
+        assertEquals(10, last)
     }
 
     @Test
     fun lastOrElse_alwaysFalse_returnDefaultValue() {
-        val numbers = (1..10).toList()
+        val numbers = (1..11).toList()
         val value = 33
 
         val first = numbers.lastOrElse({ false }, { value })
 
         assertEquals(value, first)
-    }
-
-    @Test
-    fun dropLast_notEmpty_dropOne() {
-        val numbers = (1..10).toList()
-
-        val head = numbers.dropLast()
-
-        assertEquals(head.size, numbers.count() - 1)
     }
 
     @Test
@@ -75,5 +75,27 @@ internal class ListTest {
         }
 
         assertEquals(listOf(8, 9, 10), result)
+    }
+
+    @Test
+    fun takeUntil_predicateNeverTrue_returnsEmpty() {
+        val values = (1..10).toList()
+
+        val result = values.takeUntil {
+            false
+        }
+
+        assertEquals(values.toList(), result)
+    }
+
+    @Test
+    fun takeUntil_predicateTrueOnThree_returnsEmpty() {
+        val values = (1..10).toList()
+
+        val result = values.takeUntil {
+            it == 6
+        }
+
+        assertEquals(listOf(1, 2, 3, 4, 5), result)
     }
 }

@@ -2,7 +2,6 @@ package org.ktorium.kotlin.stdlib
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 
 internal class ArrayTest {
 
@@ -51,21 +50,67 @@ internal class ArrayTest {
     }
 
     @Test
-    fun ifNotEmpty_empty_returnEmptyList() {
-        val values = emptyArray<String>()
+    fun firstOrDefault_firstEvenNumber_returnFirstPredicate() {
+        val numbers = (1..10).toList().toTypedArray()
 
-        val result = values.ifNotEmpty { throw Exception() }
+        val first = numbers.firstOrDefault({ it % 2 == 0 }, 33)
 
-        assertNull(result)
+        assertEquals(2, first)
     }
 
     @Test
-    fun ifNotEmpty_nonEmpty_returnsValues() {
-        val values = (1..10).toList().toTypedArray()
+    fun firstOrElse_firstEvenNumber_returnFirstPredicate() {
+        val numbers = (1..10).toList().toTypedArray()
 
-        val result = values.ifNotEmpty { filter { it % 2 == 0 } }
+        val first = numbers.firstOrElse({ it % 2 == 0 }) {
+            33
+        }
 
-        assertEquals(listOf(2, 4, 6, 8, 10), result)
+        assertEquals(2, first)
+    }
+
+    @Test
+    fun firstOrElse_alwaysFalse_returnDefaultValue() {
+        val numbers = (1..10).toList().toTypedArray()
+        val value = 33
+
+        val first = numbers.firstOrElse({ false }) {
+            value
+        }
+
+        assertEquals(value, first)
+    }
+
+    @Test
+    fun lastOrDefault_lastEvenNumber_returnFirstPredicate() {
+        val numbers = (1..11).toList().toTypedArray()
+
+        val first = numbers.lastOrDefault({ it % 2 == 0 }, 33)
+
+        assertEquals(10, first)
+    }
+
+    @Test
+    fun lastOrElse_lastEvenNumber_returnFirstPredicate() {
+        val numbers = (1..11).toList().toTypedArray()
+
+        val first = numbers.lastOrElse({ it % 2 == 0 }) {
+            33
+        }
+
+        assertEquals(10, first)
+    }
+
+    @Test
+    fun lastOrElse_alwaysFalse_returnDefaultValue() {
+        val numbers = (1..11).toList().toTypedArray()
+        val value = 33
+
+        val first = numbers.lastOrElse({ false }) {
+            value
+        }
+
+        assertEquals(value, first)
     }
 
     @Test

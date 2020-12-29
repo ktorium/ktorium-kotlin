@@ -314,7 +314,7 @@ internal class StandardTest {
         val result = withIf(list, false) {
             throw Exception()
         }
-
+"".isEmpty()
         assertNull(result)
     }
 }

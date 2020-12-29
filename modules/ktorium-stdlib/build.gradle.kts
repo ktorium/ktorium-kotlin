@@ -84,7 +84,9 @@ kotlin {
             }
         }
 
-        val jvmMain by getting
+        val jvmMain by getting {
+            kotlin.srcDirs("src/jvmMain/kotlinX")
+        }
 
         val jvmTest by getting {
             dependencies {
@@ -92,7 +94,9 @@ kotlin {
             }
         }
 
-        val jsMain by getting
+        val jsMain by getting {
+            kotlin.srcDirs("src/jsMain/kotlinX")
+        }
 
         val jsTest by getting {
             dependencies {

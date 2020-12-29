@@ -1,8 +1,14 @@
 package org.ktorium.kotlin.stdlib
 
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.InvocationKind
-import kotlin.contracts.contract
+/**
+ * Drops the first element.
+ */
+public fun <T> Array<out T>.dropFirst(): List<T> = drop(1)
+
+/**
+ * Drop the last element of the list.
+ */
+public fun <T> Array<out T>.dropLast(): List<T> = dropLast(1)
 
 /**
  * Drop the last elements from the `Array` until a match against the `predicate` is `true`.
@@ -21,25 +27,44 @@ public inline fun <T> Array<out T>.dropLastUntil(predicate: (T) -> Boolean): Lis
  * Drop the leading elements from the `Array` until a match against the `predicate` is `true`.
  */
 public inline fun <T> Array<out T>.dropUntil(predicate: (T) -> Boolean): List<T> {
-    for (item in this.withIndex()) {
-        if (predicate(item.value)) {
-            return slice(item.index until size)
+    var yielding = false
+    val list = arrayListOf<T>()
+    for (item in this)
+        if (yielding)
+            list.add(item)
+        else if (predicate(item)) {
+            list.add(item)
+            yielding = true
         }
-    }
-
-    return emptyList()
+    return list
 }
 
 /**
- * Calls the specified [block] if the array is not empty.
+ * Returns the first element matching the given [predicate] or the result of the [defaultValue] if no such element is found.
  */
-@ExperimentalContracts
-public inline fun <T, O> Array<out T>.ifNotEmpty(block: Array<out T>.() -> O?): O? {
-    contract {
-        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-    }
+public inline fun <T> Array<out T>.firstOrDefault(predicate: (T) -> Boolean, defaultValue: T): T {
+    return firstOrNull(predicate) ?: defaultValue
+}
 
-    return if (isNotEmpty()) this.block() else null
+/**
+ * Returns the first element matching the given [predicate] or the result of calling the [defaultValue] function if no such element is found.
+ */
+public inline fun <T> Array<out T>.firstOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
+    return firstOrNull(predicate) ?: defaultValue()
+}
+
+/**
+ * Returns the last element matching the given [predicate], or the [defaultValue] if no such element is found.
+ */
+public inline fun <T> Array<out T>.lastOrDefault(predicate: (T) -> Boolean, defaultValue: T): T {
+    return lastOrNull(predicate) ?: defaultValue
+}
+
+/**
+ * Returns the last element matching the given [predicate], or the result of calling the [defaultValue] function if no such element is found.
+ */
+public inline fun <T> Array<out T>.lastOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
+    return lastOrNull(predicate) ?: defaultValue()
 }
 
 /**

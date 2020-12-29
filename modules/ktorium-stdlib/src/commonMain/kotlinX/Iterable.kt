@@ -1,9 +1,5 @@
 package org.ktorium.kotlin.stdlib
 
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.InvocationKind
-import kotlin.contracts.contract
-
 /**
  * Drops the first element.
  */
@@ -13,7 +9,7 @@ public fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
  * Drop the leading elements from the `Iterable` until a match against the `predicate` is `true`.
  */
 public inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> {
-    val result = mutableListOf<T>()
+    val result = arrayListOf<T>()
     var yielding = false
 
     for (item in this) {
@@ -29,41 +25,43 @@ public inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> 
 }
 
 /**
- * Returns the first element matching the given [predicate] or the result of the [defaultValue] if no such element is found.
+ * Returns the first element matching the given [predicate] or the [defaultValue] if no such element is found.
  */
-public inline fun <T> Iterable<T>.firstOrDefault(defaultValue: T, predicate: (T) -> Boolean): T {
-    for (element in this) if (predicate(element)) return element
-
-    return defaultValue
+public inline fun <T> Iterable<T>.firstOrDefault(predicate: (T) -> Boolean, defaultValue: T): T {
+    return firstOrNull(predicate) ?: defaultValue
 }
 
 /**
  * Returns the first element matching the given [predicate] or the result of calling the [defaultValue] function if no such element is found.
  */
-@ExperimentalContracts
-public inline fun <T> Iterable<T>.firstOrElse(defaultValue: () -> T, predicate: (T) -> Boolean): T {
-    contract {
-        callsInPlace(defaultValue, InvocationKind.AT_MOST_ONCE)
-    }
-
-    for (element in this) if (predicate(element)) return element
-
-    return defaultValue()
+public inline fun <T> Iterable<T>.firstOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
+    return firstOrNull(predicate) ?: defaultValue()
 }
 
 /**
- * Take the leading elements from the `Array` until a match against the `predicate` is `true`.
+ * Returns the last element matching the given [predicate], or the [defaultValue] if no such element is found.
+ */
+public inline fun <T> Iterable<T>.lastOrDefault(predicate: (T) -> Boolean, defaultValue: T): T {
+    return lastOrNull(predicate) ?: defaultValue
+}
+
+/**
+ * Returns the last element matching the given [predicate], or the result of calling the [defaultValue] function if no such element is found.
+ */
+public inline fun <T> Iterable<T>.lastOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
+    return lastOrNull(predicate) ?: defaultValue()
+}
+
+/**
+ * Take the leading elements until a match against the `predicate` is `true`.
  */
 public inline fun <T> Iterable<T>.takeUntil(predicate: (T) -> Boolean): List<T> {
-    val result = mutableListOf<T>()
-
+    val list = arrayListOf<T>()
     for (item in this) {
         if (predicate(item)) {
             break
         }
-
-        result.add(item)
+        list.add(item)
     }
-
-    return result
+    return list
 }

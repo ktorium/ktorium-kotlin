@@ -156,12 +156,7 @@ public inline fun <T, R> T.runIf(condition: Boolean, block: T.() -> R): R? {
 /**
  * Call the specified [block] and if it throws an exception then return null.
  */
-@ExperimentalContracts
 public inline fun <T> tryOrNull(crossinline block: () -> T): T? {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
-    }
-
     return try {
         block()
     } catch (_: Throwable) {
