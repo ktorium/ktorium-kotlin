@@ -14,10 +14,6 @@ repositories {
     mavenCentral()
 }
 
-kotlinDslPluginOptions {
-    experimentalWarning.set(false)
-}
-
 sourceSets {
     named("main") {
         withConvention(KotlinSourceSet::class) {

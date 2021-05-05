@@ -7,8 +7,8 @@ buildscript {
 }
 
 plugins {
-    kotlin("multiplatform") version "1.4.20" apply false
-    id("io.gitlab.arturbosch.detekt") version "1.14.2" apply false
+    kotlin("multiplatform") version "1.5.0" apply false
+    id("io.gitlab.arturbosch.detekt") version "1.17.0-RC2" apply false
 }
 
 allprojects {
