@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -11,7 +11,7 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 kotlinDslPluginOptions {

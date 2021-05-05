@@ -2,7 +2,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 

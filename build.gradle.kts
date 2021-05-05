@@ -2,7 +2,7 @@ import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -16,7 +16,7 @@ allprojects {
     version = "0.0.1"
 
     repositories {
-        jcenter()
+        mavenCentral()
     }
 
     configurations.all {
