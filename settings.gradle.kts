@@ -1,16 +1,26 @@
 pluginManagement {
+    plugins {
+        kotlin("multiplatform") version "1.9.21" apply false
+    }
     repositories {
         gradlePluginPortal()
         mavenCentral()
     }
 }
 
+dependencyResolutionManagement {
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+
+    repositories {
+        mavenCentral()
+    }
+}
+
 rootProject.name = "ktorium-kotlin"
 
-listOf(
-        "ktorium-bom",
-        "ktorium-stdlib"
-).forEach {
-    include(it)
-    project(":${it}").projectDir = File("modules/$it")
+includeModule("ktorium-stdlib")
+
+fun includeModule(name: String) {
+    include(name)
+    project(":${name}").projectDir = File("modules/$name")
 }

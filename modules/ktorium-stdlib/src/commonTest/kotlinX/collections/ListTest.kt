@@ -1,4 +1,4 @@
-package org.ktorium.kotlin.stdlib
+package org.ktorium.kotlin.stdlib.collections
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

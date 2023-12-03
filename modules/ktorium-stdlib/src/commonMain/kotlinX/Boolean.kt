@@ -1,7 +1,6 @@
 package org.ktorium.kotlin.stdlib
 
 import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
 /**
@@ -10,7 +9,7 @@ import kotlin.contracts.contract
 @ExperimentalContracts
 public fun Boolean?.orFalse(): Boolean {
     contract {
-        returns(false) implies (this@orFalse == null)
+        returns(true) implies (this@orFalse != null)
     }
 
     return this ?: false
@@ -22,42 +21,8 @@ public fun Boolean?.orFalse(): Boolean {
 @ExperimentalContracts
 public fun Boolean?.orTrue(): Boolean {
     contract {
-        returns(true) implies (this@orTrue == null)
+        returns(false) implies (this@orTrue != null)
     }
 
     return this ?: true
 }
-
-/**
- * Will execute [block] if this [Boolean] is true.
- *
- * @return This boolean
- */
-@ExperimentalContracts
-public inline fun Boolean.ifTrue(block: () -> Unit): Boolean {
-    contract {
-        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-    }
-
-    if (this) block()
-
-    return this
-}
-
-/**
- * Will execute [block] if this [Boolean] is false.
- *
- * @return This boolean
- */
-@ExperimentalContracts
-public inline fun Boolean.ifFalse(block: () -> Unit): Boolean {
-    contract {
-        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-    }
-
-    if (!this) block()
-
-    return this
-}
-
-public fun Boolean.toInt(): Int = if (this) 1 else 0

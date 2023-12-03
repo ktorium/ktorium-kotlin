@@ -1,34 +1,17 @@
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-}
-
 plugins {
     `kotlin-dsl`
 }
 
-repositories {
-    mavenCentral()
+configurations.all {
+    resolutionStrategy {
+        failOnNonReproducibleResolution()
+    }
 }
 
 sourceSets {
-    named("main") {
-        withConvention(KotlinSourceSet::class) {
-            kotlin.srcDirs("src/main/kotlinX")
+    main {
+        kotlin {
+            srcDirs("src/main/kotlin", "src/main/kotlinX")
         }
-    }
-    named("test") {
-        withConvention(KotlinSourceSet::class) {
-            kotlin.srcDirs("src/test/kotlinX")
-        }
-    }
-}
-
-dependencies {
-    subprojects.forEach {
-        runtimeOnly(project(it.path))
     }
 }

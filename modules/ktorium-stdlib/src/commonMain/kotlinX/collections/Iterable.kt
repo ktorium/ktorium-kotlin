@@ -1,4 +1,4 @@
-package org.ktorium.kotlin.stdlib
+package org.ktorium.kotlin.stdlib.collections
 
 /**
  * Drops the first element.
@@ -9,7 +9,7 @@ public fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
  * Drop the leading elements from the `Iterable` until a match against the `predicate` is `true`.
  */
 public inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> {
-    val result = arrayListOf<T>()
+    val result = mutableListOf<T>()
     var yielding = false
 
     for (item in this) {
@@ -56,7 +56,7 @@ public inline fun <T> Iterable<T>.lastOrElse(predicate: (T) -> Boolean, defaultV
  * Take the leading elements until a match against the `predicate` is `true`.
  */
 public inline fun <T> Iterable<T>.takeUntil(predicate: (T) -> Boolean): List<T> {
-    val list = arrayListOf<T>()
+    val list = mutableListOf<T>()
     for (item in this) {
         if (predicate(item)) {
             break

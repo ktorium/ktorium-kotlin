@@ -1,6 +1,9 @@
 package org.ktorium.kotlin.stdlib
 
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertFalse
+import kotlin.test.assertSame
+import kotlin.test.assertTrue
 
 internal class BooleanTest {
 
@@ -37,28 +40,6 @@ internal class BooleanTest {
 
         val result = condition.orFalse()
 
-        assertFalse(result)
-    }
-
-    @Test
-    fun ifTrue_call_returnTrue() {
-        var number = 1
-        val value = true
-
-        val result = value.ifTrue { number = 3 }
-
-        assertEquals(3, number)
-        assertTrue(result)
-    }
-
-    @Test
-    fun ifFalse_call_returnFalse() {
-        var number = 1
-        val value = false
-
-        val result = value.ifFalse { number = 3 }
-
-        assertEquals(3, number)
         assertFalse(result)
     }
 }

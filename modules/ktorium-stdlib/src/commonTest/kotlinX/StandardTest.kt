@@ -1,30 +1,37 @@
 package org.ktorium.kotlin.stdlib
 
-import kotlin.test.*
+import jdk.jshell.spi.ExecutionControl.NotImplementedException
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
+import kotlin.test.assertNull
+import kotlin.test.assertSame
+import kotlin.test.assertTrue
 
 internal class StandardTest {
 
     @Test
-    fun alsoIf_trueCondition_callBlock() {
-        val fruits = mutableListOf("blueberry", "apple")
-        val grapes = "grapes"
+    fun withIf_trueCondition_returnBlock() {
+        val fruit = "lemon"
 
-        fruits.alsoIf(true) {
-            it.add(grapes)
+        val result = withIf(true, fruit) {
+            fruit
         }
 
-        assertTrue(fruits.contains(grapes))
+        assertEquals(fruit, result)
     }
 
     @Test
-    fun alsoIf_falseCondition_callBlock() {
-        val fruits = mutableListOf("blueberry", "apple")
+    fun withIf_falseCondition_returnNull() {
+        val list = listOf("first", "last")
 
-        val result = fruits.alsoIf(false) {
-            throw IllegalStateException()
+        @Suppress("IMPLICIT_NOTHING_TYPE_ARGUMENT_IN_RETURN_POSITION")
+        val result = withIf(false, list) {
+            throw Exception()
         }
 
-        assertEquals(fruits, result)
+        assertNull(result)
     }
 
     @Test
@@ -51,11 +58,56 @@ internal class StandardTest {
     }
 
     @Test
+    fun alsoIf_trueCondition_callBlock() {
+        val fruits = mutableListOf("blueberry", "apple")
+        val grapes = "grapes"
+
+        fruits.alsoIf(true) {
+            it.add(grapes)
+        }
+
+        assertTrue(fruits.contains(grapes))
+    }
+
+    @Test
+    fun alsoIf_falseCondition_callBlock() {
+        val fruits = mutableListOf("blueberry", "apple")
+
+        val result = fruits.alsoIf(false) {
+            throw IllegalStateException()
+        }
+
+        assertEquals(fruits, result)
+    }
+
+    @Test
+    fun letIf_trueCondition_callBlock() {
+        val fruit = "blueberry"
+        val apple = "apple"
+
+        val result = fruit.letIf(true) {
+            "apple"
+        }
+
+        assertEquals(apple, result)
+    }
+
+    @Test
+    fun letIf_falseCondition_callBlock() {
+        val fruit = "blueberry"
+
+        @Suppress("IMPLICIT_NOTHING_TYPE_ARGUMENT_IN_RETURN_POSITION")
+        fruit.letIf(false) {
+            throw NotImplementedException("not implemented")
+        }
+    }
+
+    @Test
     fun getOrThrow_nullValue_throwException() {
         val fruit: String? = null
 
         assertFailsWith(Exception::class) {
-            fruit.getOrThrow(Exception())
+            fruit.getOrThrow(RuntimeException())
         }
     }
 
@@ -107,214 +159,30 @@ internal class StandardTest {
     }
 
     @Test
-    fun ifNull_nullValue_callBlock() {
-        val fruit: String? = null
-        val value = "watermelon"
-
-        val result = fruit.ifNull { value }
-
-        assertSame(value, result)
-    }
-
-    @Test
-    fun ifNull_notNullValue_callBlock() {
-        val fruit = "watermelon"
-
-        val result = fruit.ifNull { throw IllegalStateException() }
-
-        assertSame(fruit, result)
-    }
-
-    @Test
     fun isNull_nullValue_returnTrue() {
-        val result = "value".isNull()
+        val fruit: String? = null
 
-        assertFalse(result)
+        assertTrue(fruit.isNull())
     }
 
     @Test
     fun isNull_notNullValue_returnFalse() {
-        val result = null.isNull()
+        val value = "lemon".getOrDefault(null)
 
-        assertTrue(result)
+        assertFalse(value.isNull())
     }
 
     @Test
-    fun isNotNull_nullValue_returnFalse() {
-        val result = "value".isNotNull()
+    fun isNotNull_nullValue_returnTrue() {
+        val fruit: String? = null
 
-        assertTrue(result)
+        assertFalse(fruit.isNotNull())
     }
 
     @Test
-    fun isNull_notNullValue_returnTrue() {
-        val result = null.isNotNull()
+    fun isNotNull_notNullValue_returnFalse() {
+        val value = "lemon".getOrDefault(null)
 
-        assertFalse(result)
-    }
-
-    @Test
-    fun letIf_trueCondition_callBlock() {
-        val fruit = "blueberry"
-        val apple = "apple"
-
-        val result = fruit.letIf(true) {
-            "apple"
-        }
-
-        assertEquals(apple, result)
-    }
-
-    @Test
-    fun letIf_falseCondition_callBlock() {
-        val fruit = "blueberry"
-
-        val result = fruit.letIf(false) {
-            throw IllegalStateException()
-        }
-
-        assertNull(result)
-    }
-
-    @Test
-    fun orElse_nullInvoke_callBlock() {
-        val peach = "peach"
-
-        val result = { null }.orElse { peach }
-
-        assertSame(peach, result)
-    }
-
-    @Test
-    fun orElse_notNullInvoke_callBlock() {
-        val lime = "lime"
-
-        val result = { lime }.orElse { throw IllegalStateException() }
-
-        assertSame(lime, result)
-    }
-
-    @Test
-    fun runIf_trueCondition_callBlock() {
-        val fruit = "blueberry"
-        val apple = "apple"
-
-        val result = fruit.runIf(true) {
-            "apple"
-        }
-
-        assertEquals(apple, result)
-    }
-
-    @Test
-    fun runIf_falseCondition_callBlock() {
-        val fruit = "blueberry"
-
-        val result = fruit.runIf(false) {
-            throw IllegalStateException()
-        }
-
-        assertNull(result)
-    }
-
-    @Test
-    fun tryOrNull_throwsException_returnNull() {
-        val result = tryOrNull {
-            throw Exception()
-        }
-
-        assertNull(result)
-    }
-
-    @Test
-    fun tryOrNull_callBlock_returnBlock() {
-        val value = "pineapple"
-
-        val result = tryOrNull {
-            value
-        }
-
-        assertSame(value, result)
-    }
-
-    @Test
-    fun trySilently_noException_doNothing() {
-        val value: String?
-        val orange = "orange"
-
-        trySilently { value = orange }
-
-        assertEquals(orange, value)
-    }
-
-    @Test
-    fun trySilently_withException_doNothing() {
-        trySilently { throw Exception() }
-    }
-
-    @Test
-    fun tryOrDefault_blockThrowException_returnDefault() {
-        val value = "pineapple"
-
-        val result = tryOrDefault(value) {
-            throw Exception()
-        }
-
-        assertSame(value, result)
-    }
-
-    @Test
-    fun tryOrDefault_blockReturnValue_returnValue() {
-        val value = "pineapple"
-
-        val result = tryOrDefault(value) {
-            value
-        }
-
-        assertSame(value, result)
-    }
-
-    @Test
-    fun tryOrElse_blockThrowException_returnDefault() {
-        val value = "pineapple"
-
-        val result = tryOrElse({ value }) {
-            throw Exception()
-        }
-
-        assertSame(value, result)
-    }
-
-    @Test
-    fun tryOrElse_blockReturnsSuccessful_returnValue() {
-        val value = "pineapple"
-
-        val result = tryOrElse({ throw Exception() }) {
-            value
-        }
-
-        assertSame(value, result)
-    }
-
-    @Test
-    fun withIf_trueCondition_returnBlock() {
-        val list = listOf("first", "last")
-
-        val result = withIf(list, true) {
-            this.last()
-        }
-
-        assertEquals("last", result)
-    }
-
-    @Test
-    fun withIf_falseCondition_returnNull() {
-        val list = listOf("first", "last")
-
-        val result = withIf(list, false) {
-            throw Exception()
-        }
-"".isEmpty()
-        assertNull(result)
+        assertTrue(value.isNotNull())
     }
 }

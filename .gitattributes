@@ -10,27 +10,18 @@
 # in Unix via a file share from Windows, the scripts will work.
 *.sh text eol=lf
 
-# Documents
 *.md            text
 *.properties    text
-*.txt           text
-*.xml           text
-*.yaml          text
-*.yml           text
-*.json          text
-LICENSE         text
-TODO            text
+*.kt            text
+*.kts           text
 
-# Configs
 .editorconfig   text
 .gitattributes  text
 .gitignore      text
 
-# Gradle
+LICENSE         text
+
+*.jar           binary
+
 gradlew         text eol=lf linguist-vendored
 gradlew.bat     text eol=crlf linguist-vendored
-
-# Kotlin
-*.kt            text
-*.kts           text
-*.jar           binary

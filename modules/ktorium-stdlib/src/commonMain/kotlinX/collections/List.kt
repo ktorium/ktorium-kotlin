@@ -1,4 +1,4 @@
-package org.ktorium.kotlin.stdlib
+package org.ktorium.kotlin.stdlib.collections
 
 /**
  * Drop the last element of the list.
@@ -9,7 +9,7 @@ public fun <T> List<T>.dropLast(): List<T> = dropLast(1)
  * Drop the last elements from the `List` until a match against the `predicate` is `true`.
  */
 public inline fun <T> List<T>.dropLastUntil(predicate: (T) -> Boolean): List<T> {
-    if (!isEmpty()) {
+    if (isNotEmpty()) {
         val iterator = listIterator(size)
         while (iterator.hasPrevious()) {
             if (predicate(iterator.previous())) {
@@ -17,6 +17,7 @@ public inline fun <T> List<T>.dropLastUntil(predicate: (T) -> Boolean): List<T> 
             }
         }
     }
+
     return emptyList()
 }
 
@@ -38,7 +39,7 @@ public inline fun <T> List<T>.lastOrElse(predicate: (T) -> Boolean, defaultValue
  * Take the last elements from the `List` until a match against the `predicate` is `true`.
  */
 public inline fun <T> List<T>.takeLastUntil(predicate: (T) -> Boolean): List<T> {
-    if (!isEmpty()) {
+    if (isNotEmpty()) {
         val iterator = listIterator(size)
         while (iterator.hasPrevious()) {
             if (predicate(iterator.previous())) {
@@ -53,7 +54,7 @@ public inline fun <T> List<T>.takeLastUntil(predicate: (T) -> Boolean): List<T> 
  * Take the leading elements until a match against the `predicate` is `true`.
  */
 public inline fun <T> List<T>.takeUntil(predicate: (T) -> Boolean): List<T> {
-    val list = arrayListOf<T>()
+    val list = mutableListOf<T>()
     for (item in this) {
         if (predicate(item)) {
             break

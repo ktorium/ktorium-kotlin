@@ -28,14 +28,16 @@ public inline fun <T> Array<out T>.dropLastUntil(predicate: (T) -> Boolean): Lis
  */
 public inline fun <T> Array<out T>.dropUntil(predicate: (T) -> Boolean): List<T> {
     var yielding = false
-    val list = arrayListOf<T>()
-    for (item in this)
-        if (yielding)
+    val list = mutableListOf<T>()
+    for (item in this) {
+        if (yielding) {
             list.add(item)
-        else if (predicate(item)) {
+        } else if (predicate(item)) {
             list.add(item)
             yielding = true
         }
+    }
+
     return list
 }
 
@@ -92,3 +94,6 @@ public inline fun <T> Array<out T>.takeUntil(predicate: (T) -> Boolean): List<T>
 
     return toList()
 }
+
+public inline fun <T> Array<out T>.ifNotEmpty(body: Array<out T>.() -> T?): T? =
+    if(isNotEmpty()) body() else null
