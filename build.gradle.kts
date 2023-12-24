@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
 
 allprojects {
-    group = "com.ktorium.kotlin"
+    group = "org.ktorium.kotlin"
     version = "1.0.0-SNAPSHOT"
 
     configurations.all {

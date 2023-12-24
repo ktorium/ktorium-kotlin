@@ -4,6 +4,8 @@ import org.ktorium.kotlin.gradle.KotlinCompilerArgumentsBuilder
 
 plugins {
     kotlin("multiplatform")
+
+    id("build.base")
 }
 
 configurations.all {
@@ -20,8 +22,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = "1.6"
-                languageVersion = "1.9"
+                apiVersion = ktoriumBuild.kotlinApiVersion.get().version
+                languageVersion = ktoriumBuild.kotlinLanguageVersion.get().version
                 progressiveMode = true
 
                 optIn("kotlin.contracts.ExperimentalContracts")
@@ -49,6 +51,7 @@ kotlin {
             compilerOptions {
                 withCompilerArguments {
                     requiresOptIn()
+                    requiresJsr305()
                 }
             }
         }

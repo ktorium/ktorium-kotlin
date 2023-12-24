@@ -59,7 +59,12 @@ public fun <T> T?.getOrThrow(cause: Throwable): T {
 /**
  * Return [this] value if it's not null or [default] value.
  */
-public fun <T> T?.getOrDefault(default: T): T {
+@ExperimentalContracts
+public inline fun <reified T> T?.getOrDefault(default: T): T {
+    contract {
+        returns() implies (this@getOrDefault is T)
+    }
+
     return this ?: default
 }
 
@@ -99,8 +104,47 @@ public fun <T> T?.isNotNull(): Boolean {
     return this != null
 }
 
-public inline fun <reified T> Any?.safeAsOrNull(): T? = this as? T
-public inline fun <reified T> Any?.safeAsOrDefault(default: T): T = safeAsOrNull() ?: default
-public inline fun <reified T> Any?.safeAsOrElse(block: () -> T): T = safeAsOrNull() ?: block()
-public inline fun <reified T> Any?.safeAsOrThrow(cause: Throwable): T = safeAsOrNull() ?: throw cause
-public inline fun <reified T> Any?.unsafeCast(): T = this as T
+@ExperimentalContracts
+public inline fun <reified T> Any?.safeAsOrNull(): T? {
+    contract {
+        returnsNotNull() implies (this@safeAsOrNull is T)
+    }
+
+    return this as? T
+}
+
+@ExperimentalContracts
+public inline fun <reified T> Any?.safeAsOrDefault(default: T): T {
+    contract {
+        returnsNotNull() implies (this@safeAsOrDefault is T)
+    }
+
+    return safeAsOrNull() ?: default
+}
+
+@ExperimentalContracts
+public inline fun <reified T> Any?.safeAsOrElse(block: () -> T): T {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+
+    return safeAsOrNull() ?: block()
+}
+
+@ExperimentalContracts
+public inline fun <reified T> Any?.safeAsOrThrow(cause: Throwable): T {
+    contract {
+        returnsNotNull() implies (this@safeAsOrThrow is T)
+    }
+
+    return safeAsOrNull() ?: throw cause
+}
+
+@ExperimentalContracts
+public inline fun <reified T> Any?.unsafeCast(): T {
+    contract {
+        returns() implies (this@unsafeCast is T)
+    }
+
+    return this as T
+}
