@@ -18,7 +18,7 @@ internal class BooleanTest {
 
     @Test
     fun orTrue_null_returnTrue() {
-        val condition: Boolean? = null
+        val condition: Boolean? = null.getOrDefault(null)
 
         val result = condition.orTrue()
 
@@ -36,7 +36,7 @@ internal class BooleanTest {
 
     @Test
     fun orFalse_null_returnTrue() {
-        val condition: Boolean? = null
+        val condition: Boolean? = null.getOrDefault(null)
 
         val result = condition.orFalse()
 

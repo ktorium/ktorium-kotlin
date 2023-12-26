@@ -1,6 +1,5 @@
 package org.ktorium.kotlin.stdlib
 
-import jdk.jshell.spi.ExecutionControl.NotImplementedException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -12,177 +11,283 @@ import kotlin.test.assertTrue
 internal class StandardTest {
 
     @Test
-    fun withIf_trueCondition_returnBlock() {
-        val fruit = "lemon"
+    fun applyIf_trueCondition_callBlock() {
+        val values = mutableListOf<String>()
+        val defaultValue = "default-value"
 
-        val result = withIf(true, fruit) {
-            fruit
+        values.applyIf(true) {
+            add(defaultValue)
         }
 
-        assertEquals(fruit, result)
+        assertTrue(values.contains(defaultValue))
     }
 
     @Test
-    fun withIf_falseCondition_returnNull() {
-        val list = listOf("first", "last")
+    fun applyIf_falseCondition_callBlock() {
+        val values = mutableListOf<String>()
 
-        @Suppress("IMPLICIT_NOTHING_TYPE_ARGUMENT_IN_RETURN_POSITION")
-        val result = withIf(false, list) {
-            throw Exception()
+        val result = values.applyIf(false) {
+            throw IllegalStateException()
+        }
+
+        assertEquals(values, result)
+    }
+
+    @Test
+    fun alsoIf_trueCondition_callBlock() {
+        val values = mutableListOf<String>()
+        val defaultValue = "default-value"
+
+        values.alsoIf(true) {
+            it.add(defaultValue)
+        }
+
+        assertTrue(values.contains(defaultValue))
+    }
+
+    @Test
+    fun alsoIf_falseCondition_callBlock() {
+        val value = mutableListOf<String>()
+
+        val result = value.alsoIf(false) {
+            it.add("default-value")
+        }
+
+        assertEquals(value, result)
+    }
+
+    @Test
+    fun letIf_trueCondition_callBlock() {
+        val value = "value"
+        val defaultValue = "default-value"
+
+        val result = value.letIf(true) {
+            defaultValue
+        }
+
+        assertEquals(defaultValue, result)
+    }
+
+    @Test
+    fun letIf_falseCondition_callBlock() {
+        val value = "value"
+
+        val result = value.letIf(false) {
+            "default-value"
         }
 
         assertNull(result)
     }
 
     @Test
-    fun applyIf_trueCondition_callBlock() {
-        val fruits = mutableListOf("blueberry", "apple")
-        val grapes = "grapes"
+    fun runIf_trueCondition_callBlock() {
+        val value = "value"
+        val defaultValue = "default-value"
 
-        fruits.applyIf(true) {
-            add(grapes)
+        val result = value.runIf(true) {
+            defaultValue
         }
 
-        assertTrue(fruits.contains(grapes))
+        assertEquals(defaultValue, result)
     }
 
     @Test
-    fun applyIf_falseCondition_callBlock() {
-        val fruits = mutableListOf("blueberry", "apple")
+    fun runIf_falseCondition_callBlock() {
+        val value = "value"
 
-        val result = fruits.applyIf(false) {
-            throw IllegalStateException()
+        val result = value.runIf(false) {
+            "default-value"
         }
 
-        assertEquals(fruits, result)
-    }
-
-    @Test
-    fun alsoIf_trueCondition_callBlock() {
-        val fruits = mutableListOf("blueberry", "apple")
-        val grapes = "grapes"
-
-        fruits.alsoIf(true) {
-            it.add(grapes)
-        }
-
-        assertTrue(fruits.contains(grapes))
-    }
-
-    @Test
-    fun alsoIf_falseCondition_callBlock() {
-        val fruits = mutableListOf("blueberry", "apple")
-
-        val result = fruits.alsoIf(false) {
-            throw IllegalStateException()
-        }
-
-        assertEquals(fruits, result)
-    }
-
-    @Test
-    fun letIf_trueCondition_callBlock() {
-        val fruit = "blueberry"
-        val apple = "apple"
-
-        val result = fruit.letIf(true) {
-            "apple"
-        }
-
-        assertEquals(apple, result)
-    }
-
-    @Test
-    fun letIf_falseCondition_callBlock() {
-        val fruit = "blueberry"
-
-        @Suppress("IMPLICIT_NOTHING_TYPE_ARGUMENT_IN_RETURN_POSITION")
-        fruit.letIf(false) {
-            throw NotImplementedException("not implemented")
-        }
+        assertNull(result)
     }
 
     @Test
     fun getOrThrow_nullValue_throwException() {
-        val fruit: String? = null
+        val value: String? = null
 
         assertFailsWith(Exception::class) {
-            fruit.getOrThrow(RuntimeException())
+            value.getOrThrow(RuntimeException())
         }
     }
 
     @Test
     fun getOrThrow_notNullValue_returnThis() {
-        val fruit = "lemon"
+        val value = "value"
 
-        val result = fruit.getOrThrow(Exception())
+        val result = value.getOrThrow(Exception())
 
-        assertSame(fruit, result)
+        assertSame(value, result)
     }
 
     @Test
     fun getOrDefault_nullValue_returnDefault() {
-        val fruit: String? = null
-        val defaultValue = "watermelon"
+        val value: String? = null
+        val defaultValue = "default-value"
 
-        val result = fruit.getOrDefault(defaultValue)
+        val result = value.getOrDefault(defaultValue)
 
         assertEquals(defaultValue, result)
     }
 
     @Test
     fun getOrDefault_notNullValue_returnThis() {
-        val fruit = "lemon"
+        val value = "value"
 
-        val result = fruit.getOrDefault("default-value")
+        val result = value.getOrDefault("default-value")
 
-        assertSame(fruit, result)
+        assertSame(value, result)
     }
 
     @Test
     fun getOrElse_nullValue_callBlock() {
-        val fruit: String? = null
-        val defaultValue = "watermelon"
+        val value: String? = null
+        val defaultValue = "default-value"
 
-        val result = fruit.getOrElse { defaultValue }
+        val result = value.getOrElse { defaultValue }
 
         assertEquals(defaultValue, result)
     }
 
     @Test
     fun getOrElse_notNullValue_returnThis() {
-        val fruit = "lemon"
+        val value = "value"
 
-        val result = fruit.getOrElse { throw IllegalStateException() }
+        val result = value.getOrElse { throw IllegalStateException() }
 
-        assertSame(fruit, result)
+        assertSame(value, result)
     }
 
     @Test
     fun isNull_nullValue_returnTrue() {
-        val fruit: String? = null
+        val value: String? = null
 
-        assertTrue(fruit.isNull())
+        assertTrue(value.isNull())
     }
 
     @Test
     fun isNull_notNullValue_returnFalse() {
-        val value = "lemon".getOrDefault(null)
+        val value = "value".getOrDefault(null)
 
         assertFalse(value.isNull())
     }
 
     @Test
     fun isNotNull_nullValue_returnTrue() {
-        val fruit: String? = null
+        val value: String? = null.getOrDefault(null)
 
-        assertFalse(fruit.isNotNull())
+        assertFalse(value.isNotNull())
     }
 
     @Test
     fun isNotNull_notNullValue_returnFalse() {
-        val value = "lemon".getOrDefault(null)
+        val value = "value".getOrDefault(null)
 
         assertTrue(value.isNotNull())
     }
+
+    @Test
+    fun safeAsOrNull_nullValue_returnNull() {
+        val value: String? = null
+
+        val result = value.safeAsOrNull<Int>()
+
+        assertNull(result)
+    }
+
+    @Test
+    fun safeAsOrNull_notNullValue_returnThis() {
+        val value = "value"
+
+        val result = value.safeAsOrNull<String>()
+
+        assertSame(value, result)
+    }
+
+    @Test
+    fun safeAsOrDefault_nullValue_returnDefault() {
+        val value: String? = null
+        val defaultValue = "default-value"
+
+        val result = value.safeAsOrDefault(defaultValue)
+
+        assertEquals(defaultValue, result)
+    }
+
+    @Test
+    fun safeAsOrDefault_notNullValue_returnThis() {
+        val value = "value"
+
+        val result = value.safeAsOrDefault("default-value")
+
+        assertSame(value, result)
+    }
+
+    @Test
+    fun safeAsOrElse_nullValue_callBlock() {
+        val value: String? = null
+        val defaultValue = "default-value"
+
+        val result = value.safeAsOrElse { defaultValue }
+
+        assertEquals(defaultValue, result)
+    }
+
+    @Test
+    fun safeAsOrElse_notNullValue_returnThis() {
+        val value = "value"
+        val defaultValue = "default-value"
+
+        val result = value.safeAsOrElse {
+            defaultValue
+        }
+
+        assertSame(value, result)
+    }
+
+    @Test
+    fun safeAsOrThrow_nullValue_throwException() {
+        val value: String? = null
+
+        assertFailsWith(Exception::class) {
+            value.safeAsOrThrow(RuntimeException())
+        }
+    }
+
+    @Test
+    fun safeAsOrThrow_notNullValue_returnThis() {
+        val value = "value"
+
+        val result = value.safeAsOrThrow<String>(Exception())
+
+        assertSame(value, result)
+    }
+
+    @Test
+    fun unsafeCast_nullValue_throwException() {
+        val value: String? = null
+
+        assertFailsWith(Exception::class) {
+            value.unsafeCast<Int>()
+        }
+    }
+
+    @Test
+    fun unsafeCast_notNullValue_returnThis() {
+        val value = "value"
+
+        val result = value.unsafeCast<String>()
+
+        assertSame(value, result)
+    }
+
+    @Test
+    fun unsafeCast_notSameCast_throwException() {
+        val value = "value"
+
+        assertFailsWith(Exception::class) {
+            value.unsafeCast<Int>()
+        }
+    }
+
 }

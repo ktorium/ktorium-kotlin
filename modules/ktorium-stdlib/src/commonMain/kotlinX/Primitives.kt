@@ -17,7 +17,7 @@ public infix fun Byte.shl(bitCount: Int): Byte = (this.toInt() shl bitCount).toB
  *
  * @param bitCount the number of bits to shift to the right
  */
-public infix fun Byte.shr(bitCount: Int) : Byte = (this.toInt() shr bitCount).toByte()
+public infix fun Byte.shr(bitCount: Int): Byte = (this.toInt() shr bitCount).toByte()
 
 /**
  * Return `this` if it is not null, otherwise `0`

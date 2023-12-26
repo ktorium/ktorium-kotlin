@@ -5,43 +5,61 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
 /**
- * Calls the specified function [block] with [receiver] value as its receiver if the [condition] is `true` and returns this result, otherwise return `null` value.
- */
-public inline fun <T, R> withIf(condition: Boolean, receiver: T, block: T.() -> R): R? = with(receiver) {
-    if (condition) block() else null
-}
-
-/**
  * Calls the specified function [block] with [this] value as its receiver if [condition] is `true` and return `this` value.
  */
-public inline fun <T> T.applyIf(condition: Boolean, block: T.() -> Unit): T = apply {
+@ExperimentalContracts
+public inline fun <T> T.applyIf(condition: Boolean, block: T.() -> Unit): T {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+
     if (condition) {
         block()
     }
+
+    return this
 }
 
 /**
  * Calls the specified function [block] with [this] value as its argument if [condition] is `true` and returns `this` value.
  */
-public inline fun <T> T.alsoIf(condition: Boolean, block: (T) -> Unit): T = also {
-    if (condition) {
-        block(it)
+@ExperimentalContracts
+public inline fun <T> T.alsoIf(condition: Boolean, block: (T) -> Unit): T {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
     }
+
+    if (condition) {
+        block(this)
+    }
+
+    return this
 }
 
 /**
  * Calls the specified function [block] with [this] value as its argument if the [condition] is `true` and returns its result, otherwise return `null` value.
  */
-public inline fun <T, R> T.letIf(condition: Boolean, block: (T) -> R): R? = let {
-    if (condition) block(it) else null
+@ExperimentalContracts
+public inline fun <T, R> T.letIf(condition: Boolean, block: (T) -> R): R? {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+        returns() implies (this@letIf != null)
+    }
+
+    return if (condition) block(this) else null
 }
 
-public inline fun <T, R> T.runIf(condition: Boolean, block: T.() -> R): R? = run {
-    if (condition) {
-        block()
-    } else {
-        null
+/**
+ * Calls the specified function [block] if the [condition] is `true` and returns its result, otherwise return `null` value.
+ */
+@ExperimentalContracts
+public inline fun <T, R> T.runIf(condition: Boolean, block: T.() -> R): R? {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+        returns() implies (this@runIf != null)
     }
+
+    return if (condition) block() else null
 }
 
 /**
@@ -134,7 +152,7 @@ public inline fun <reified T> Any?.safeAsOrElse(block: () -> T): T {
 @ExperimentalContracts
 public inline fun <reified T> Any?.safeAsOrThrow(cause: Throwable): T {
     contract {
-        returnsNotNull() implies (this@safeAsOrThrow is T)
+        returns() implies (this@safeAsOrThrow is T)
     }
 
     return safeAsOrNull() ?: throw cause

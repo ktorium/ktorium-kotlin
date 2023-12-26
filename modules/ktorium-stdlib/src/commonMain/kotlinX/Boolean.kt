@@ -29,24 +29,6 @@ public fun Boolean?.orTrue(): Boolean {
 }
 
 @ExperimentalContracts
-public inline fun <T> Boolean?.ifTrueOrNull(block: () -> T): T? {
-    contract {
-        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-    }
-
-    return (this == null || this).ifTrue { block() }
-}
-
-@ExperimentalContracts
-public inline fun <T> Boolean?.ifFalseOrNull(block: () -> T): T? {
-    contract {
-        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-    }
-
-    return (this == null || !this).ifFalse { block() }
-}
-
-@ExperimentalContracts
 public inline fun <T> Boolean.ifTrue(block: () -> T): T? {
     contract {
         callsInPlace(block, InvocationKind.AT_MOST_ONCE)
@@ -62,4 +44,22 @@ public inline fun <T> Boolean.ifFalse(block: () -> T): T? {
     }
 
     return if (this) null else block()
+}
+
+@ExperimentalContracts
+public inline fun <T> Boolean?.ifTrueOrNull(block: () -> T): T? {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+
+    return (this == null || this).ifTrue { block() }
+}
+
+@ExperimentalContracts
+public inline fun <T> Boolean?.ifFalseOrNull(block: () -> T): T? {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+
+    return (this == null || !this).ifFalse { block() }
 }

@@ -96,4 +96,4 @@ public inline fun <T> Array<out T>.takeUntil(predicate: (T) -> Boolean): List<T>
 }
 
 public inline fun <T> Array<out T>.ifNotEmpty(body: Array<out T>.() -> T?): T? =
-    if(isNotEmpty()) body() else null
+    if (isNotEmpty()) body() else null
