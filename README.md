@@ -13,6 +13,28 @@
 
 Kotlin extensions of official libraries.
 
+## Dependency
+
+Include the configuration in your Gradle settings.gradle.kts
+
+```kotlin
+import java.net.URI
+
+sourceControl {
+    gitRepository(URI("https://github.com/ktorium/ktorium-kotlin.git")) {
+        producesModule("com.ktorium.kotlin:ktorium-kotlin")
+    }
+}
+```
+
+and declare the dependency
+
+```kotlin
+dependencies {
+    implementation("org.ktorium.kotlin:ktorium-kotlin:$VERSION")
+}
+```
+
 ## Compatibility
 
 <table>
