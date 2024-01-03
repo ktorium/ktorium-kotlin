@@ -3,6 +3,7 @@
 pluginManagement {
     plugins {
         kotlin("multiplatform") version "1.9.22" apply false
+        kotlin("plugin.serialization") version "1.9.22" apply false
     }
     repositories {
         gradlePluginPortal()
@@ -21,6 +22,8 @@ dependencyResolutionManagement {
 rootProject.name = "ktorium-kotlin"
 
 includeModule("ktorium-stdlib")
+includeModule("ktorium-coroutines")
+includeModule("ktorium-serialization")
 
 fun includeModule(name: String) {
     include(name)
