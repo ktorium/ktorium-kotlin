@@ -1,6 +1,5 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
-import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 
@@ -33,7 +32,7 @@ kotlin {
     }
 
     wasmJs {
-        moduleName = "ktorium-kotlin"
+        moduleName = "ktorium-kotlin-stdlib"
 
         browser {
             testTask {
@@ -61,13 +60,6 @@ kotlin {
                 useKarma {
                     useChromeHeadless()
                     useConfigDirectory(project.projectDir.resolve("karma.config.d").resolve("js"))
-                }
-            }
-        }
-
-        nodejs {
-            testTask {
-                useMocha {
                 }
             }
         }
@@ -99,22 +91,7 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-
-        val wasmJsMain by getting
-//        val wasmWasiMain by getting
     }
 
     withSourcesJar()
-}
-
-tasks {
-    withType<Detekt>().configureEach {
-        reports {
-            xml.required = true
-            html.required = false
-            txt.required = false
-            sarif.required = false
-            md.required = false
-        }
-    }
 }

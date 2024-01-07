@@ -1,3 +1,6 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 import org.ktorium.kotlin.gradle.plugin.api
 
@@ -16,6 +19,36 @@ configurations.all {
 
 kotlin {
     explicitApi()
+
+    jvm {
+        compilations.all {
+            compilerOptions.configure {
+                withCompilerArguments {
+                    requiresOptIn()
+                    requiresJsr305()
+                }
+            }
+        }
+    }
+
+    js {
+        compilations.all {
+            kotlinOptions {
+                sourceMap = true
+                moduleKind = "umd"
+                metaInfo = true
+            }
+        }
+
+        browser {
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                    useConfigDirectory(project.projectDir.resolve("karma.config.d").resolve("js"))
+                }
+            }
+        }
+    }
 
     sourceSets {
         all {
@@ -46,17 +79,6 @@ kotlin {
             dependencies {
                 api("org.jetbrains.kotlinx", "kotlinx-coroutines-test")
                 implementation(kotlin("test"))
-            }
-        }
-    }
-
-    jvm {
-        compilations.all {
-            compilerOptions.configure {
-                withCompilerArguments {
-                    requiresOptIn()
-                    requiresJsr305()
-                }
             }
         }
     }
