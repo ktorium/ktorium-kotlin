@@ -1,3 +1,6 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 
@@ -29,16 +32,17 @@ kotlin {
         }
     }
 
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmWasi {
-        nodejs()
-
-        binaries.library()
-    }
-
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        nodejs()
+        moduleName = "ktorium-kotlin"
+
+        browser {
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                    useConfigDirectory(project.projectDir.resolve("karma.config.d").resolve("wasm"))
+                }
+            }
+        }
 
         binaries.library()
     }
@@ -51,17 +55,19 @@ kotlin {
                 metaInfo = true
             }
         }
+
         browser {
             testTask {
-                useMocha {
-                    timeout = "10s"
+                useKarma {
+                    useChromeHeadless()
+                    useConfigDirectory(project.projectDir.resolve("karma.config.d").resolve("js"))
                 }
             }
         }
+
         nodejs {
             testTask {
                 useMocha {
-                    timeout = "10s"
                 }
             }
         }
@@ -95,8 +101,20 @@ kotlin {
         }
 
         val wasmJsMain by getting
-        val wasmWasiMain by getting
+//        val wasmWasiMain by getting
     }
 
     withSourcesJar()
+}
+
+tasks {
+    withType<Detekt>().configureEach {
+        reports {
+            xml.required = true
+            html.required = false
+            txt.required = false
+            sarif.required = false
+            md.required = false
+        }
+    }
 }

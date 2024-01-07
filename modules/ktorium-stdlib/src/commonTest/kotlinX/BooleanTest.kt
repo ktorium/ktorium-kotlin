@@ -1,8 +1,8 @@
 package org.ktorium.kotlin.stdlib
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 internal class BooleanTest {
@@ -13,7 +13,7 @@ internal class BooleanTest {
 
         val result = condition.orTrue()
 
-        assertSame(condition, result)
+        assertEquals(condition, result)
     }
 
     @Test
@@ -31,7 +31,7 @@ internal class BooleanTest {
 
         val result = condition.orFalse()
 
-        assertSame(condition, result)
+        assertEquals(condition, result)
     }
 
     @Test
