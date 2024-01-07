@@ -1,5 +1,4 @@
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
-import org.ktorium.kotlin.gradle.plugin.api
 
 plugins {
     kotlin("multiplatform")
@@ -31,11 +30,10 @@ kotlin {
 
         val commonMain by getting {
             kotlin {
-                srcDirs( "src/commonMain/kotlinX")
+                srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
-                api("org.jetbrains.kotlinx", "kotlinx-coroutines-core")
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
             }
         }
 
@@ -44,7 +42,6 @@ kotlin {
                 srcDirs("src/commonTest/kotlinX")
             }
             dependencies {
-                api("org.jetbrains.kotlinx", "kotlinx-coroutines-test")
                 implementation(kotlin("test"))
             }
         }

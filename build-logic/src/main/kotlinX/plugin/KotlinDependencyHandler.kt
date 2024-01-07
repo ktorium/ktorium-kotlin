@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package org.ktorium.kotlin.gradle.plugin
 
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler

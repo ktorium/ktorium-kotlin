@@ -1,6 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.ktorium.kotlin.gradle.KotlinCompilerArgumentsBuilder
+import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 import org.ktorium.kotlin.gradle.plugin.api
 import org.ktorium.kotlin.gradle.plugin.implementation
 
@@ -9,6 +7,7 @@ plugins {
     kotlin("plugin.serialization")
 
     id("build.base")
+    id("build.publication")
 }
 
 configurations.all {
@@ -19,8 +18,6 @@ configurations.all {
 
 kotlin {
     explicitApi()
-
-    jvm()
 
     sourceSets {
         all {
@@ -36,7 +33,7 @@ kotlin {
 
         val commonMain by getting {
             kotlin {
-                srcDirs("src/commonMain/kotlinX")
+                srcDirs( "src/commonMain/kotlinX")
             }
             dependencies {
                 api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.2"))
@@ -47,7 +44,7 @@ kotlin {
 
         val commonTest by getting {
             kotlin {
-                srcDirs("src/commonTest/kotlinX")
+                srcDirs( "src/commonTest/kotlinX")
             }
             dependencies {
                 implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json")
@@ -57,9 +54,9 @@ kotlin {
         }
     }
 
-    tasks {
-        project.tasks.withType<KotlinCompile> {
-            compilerOptions {
+    jvm {
+        compilations.all {
+            compilerOptions.configure {
                 withCompilerArguments {
                     requiresOptIn()
                     requiresJsr305()
@@ -67,10 +64,6 @@ kotlin {
             }
         }
     }
-}
 
-internal fun KotlinJvmCompilerOptions.withCompilerArguments(configure: KotlinCompilerArgumentsBuilder.() -> Unit) {
-    val arguments = KotlinCompilerArgumentsBuilder().apply(configure).build()
-
-    freeCompilerArgs.addAll(arguments)
+    withSourcesJar()
 }

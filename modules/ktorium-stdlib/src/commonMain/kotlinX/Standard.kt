@@ -43,7 +43,6 @@ public inline fun <T> T.alsoIf(condition: Boolean, block: (T) -> Unit): T {
 public inline fun <T, R> T.letIf(condition: Boolean, block: (T) -> R): R? {
     contract {
         callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-        returns() implies (this@letIf != null)
     }
 
     return if (condition) block(this) else null
@@ -56,7 +55,6 @@ public inline fun <T, R> T.letIf(condition: Boolean, block: (T) -> R): R? {
 public inline fun <T, R> T.runIf(condition: Boolean, block: T.() -> R): R? {
     contract {
         callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-        returns() implies (this@runIf != null)
     }
 
     return if (condition) block() else null

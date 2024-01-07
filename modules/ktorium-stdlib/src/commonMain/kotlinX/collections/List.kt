@@ -29,10 +29,10 @@ public inline fun <T> List<T>.lastOrDefault(predicate: (T) -> Boolean, defaultVa
 }
 
 /**
- * Returns the last element matching the given [predicate], or the result of calling the [defaultValue] function if no such element is found.
+ * Returns the last element matching the given [predicate], or the result of calling the [block] function if no such element is found.
  */
-public inline fun <T> List<T>.lastOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
-    return lastOrNull(predicate) ?: defaultValue()
+public inline fun <T> List<T>.lastOrElse(predicate: (T) -> Boolean, block: () -> T): T {
+    return lastOrNull(predicate) ?: block()
 }
 
 /**

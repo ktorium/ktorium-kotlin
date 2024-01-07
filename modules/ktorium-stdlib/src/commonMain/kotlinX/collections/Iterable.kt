@@ -32,10 +32,10 @@ public inline fun <T> Iterable<T>.firstOrDefault(predicate: (T) -> Boolean, defa
 }
 
 /**
- * Returns the first element matching the given [predicate] or the result of calling the [defaultValue] function if no such element is found.
+ * Returns the first element matching the given [predicate] or the result of calling the [block] function if no such element is found.
  */
-public inline fun <T> Iterable<T>.firstOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
-    return firstOrNull(predicate) ?: defaultValue()
+public inline fun <T> Iterable<T>.firstOrElse(predicate: (T) -> Boolean, block: () -> T): T {
+    return firstOrNull(predicate) ?: block()
 }
 
 /**
@@ -46,10 +46,10 @@ public inline fun <T> Iterable<T>.lastOrDefault(predicate: (T) -> Boolean, defau
 }
 
 /**
- * Returns the last element matching the given [predicate], or the result of calling the [defaultValue] function if no such element is found.
+ * Returns the last element matching the given [predicate], or the result of calling the [block] function if no such element is found.
  */
-public inline fun <T> Iterable<T>.lastOrElse(predicate: (T) -> Boolean, defaultValue: () -> T): T {
-    return lastOrNull(predicate) ?: defaultValue()
+public inline fun <T> Iterable<T>.lastOrElse(predicate: (T) -> Boolean, block: () -> T): T {
+    return lastOrNull(predicate) ?: block()
 }
 
 /**

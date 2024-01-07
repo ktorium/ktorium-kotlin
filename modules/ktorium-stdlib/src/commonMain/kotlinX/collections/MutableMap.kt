@@ -11,5 +11,6 @@ public inline fun <K, E> MutableMap<K, E>.computeIfAbsent(key: K, initializer: (
         this[key] = initial
         return initial
     }
+
     return value
 }

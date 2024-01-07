@@ -17,16 +17,6 @@ internal class CharSequenceTest {
     }
 
     @Test
-    fun isNotNumeric_validNumber_returnsFalse() {
-        assertFalse("123".isNotNumeric())
-    }
-
-    @Test
-    fun isNotNumeric_invalidNumber_returnsTrue() {
-        assertTrue("NaN".isNotNumeric())
-    }
-
-    @Test
     fun nullIfBlank_emptyString_returnsNull() {
         assertNull("".nullIfBlank())
         assertNull(" ".nullIfBlank())

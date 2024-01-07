@@ -11,7 +11,7 @@ configurations.all {
 sourceSets {
     main {
         kotlin {
-            srcDirs("src/main/kotlin", "src/main/kotlinX")
+            srcDirs("src/main/kotlinX")
         }
     }
 }

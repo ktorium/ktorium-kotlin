@@ -10,13 +10,6 @@ import kotlin.contracts.contract
 public fun CharSequence.isNumeric(): Boolean = all(Char::isDigit)
 
 /**
- * Checks whether a String is not numeric (meaning it contains an Integer)
- *
- * @see isNotNumeric
- */
-public fun CharSequence.isNotNumeric(): Boolean = !isNumeric()
-
-/**
  * Returns `null` if this String [isBlank] or the String itself
  *
  * @see ifBlank

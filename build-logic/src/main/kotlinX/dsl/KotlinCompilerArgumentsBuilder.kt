@@ -1,4 +1,6 @@
-package org.ktorium.kotlin.gradle
+@file:Suppress("PackageDirectoryMismatch")
+
+package org.ktorium.kotlin.gradle.dsl
 
 class KotlinCompilerArgumentsBuilder {
     private val arguments: MutableList<String> = mutableListOf()

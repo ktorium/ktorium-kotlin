@@ -1,5 +1,9 @@
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType.ALL
 
+plugins {
+    kotlin("multiplatform") apply false
+}
+
 allprojects {
     group = "org.ktorium.kotlin"
     version = "1.0.0-SNAPSHOT"

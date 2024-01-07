@@ -2,15 +2,14 @@ package org.ktorium.kotlin.gradle.builder
 
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
-import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import javax.inject.Inject
-
 
 abstract class BuildProperties @Inject constructor(
     private val providers: ProviderFactory,
 ) {
-    val mainJavaVersion: Provider<JavaLanguageVersion> = property("javaToolchain.mainCompiler", JavaLanguageVersion::of)
+    val mainJvmVersion: Provider<JvmTarget> = property("javaToolchain.mainJvmCompiler", JvmTarget::fromTarget)
 
     val kotlinApiVersion: Provider<KotlinVersion> = property("kotlinApiVersion", KotlinVersion::fromVersion)
 

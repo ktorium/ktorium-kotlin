@@ -1,11 +1,11 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.ktorium.kotlin.gradle.KotlinCompilerArgumentsBuilder
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 
 plugins {
     kotlin("multiplatform")
 
     id("build.base")
+    id("build.publication")
 }
 
 configurations.all {
@@ -17,7 +17,55 @@ configurations.all {
 kotlin {
     explicitApi()
 
-    jvm()
+    jvm {
+        compilations.all {
+            compilerOptions.configure {
+                withCompilerArguments {
+                    requiresOptIn()
+                    requiresJsr305()
+                }
+                jvmTarget.set(ktoriumBuild.mainJvmVersion)
+            }
+        }
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmWasi {
+        nodejs()
+
+        binaries.library()
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        nodejs()
+
+        binaries.library()
+    }
+
+    js {
+        compilations.all {
+            kotlinOptions {
+                sourceMap = true
+                moduleKind = "umd"
+                metaInfo = true
+            }
+        }
+        browser {
+            testTask {
+                useMocha {
+                    timeout = "10s"
+                }
+            }
+        }
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "10s"
+                }
+            }
+        }
+    }
 
     sourceSets {
         all {
@@ -45,22 +93,10 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+
+        val wasmJsMain by getting
+        val wasmWasiMain by getting
     }
 
-    tasks {
-        project.tasks.withType<KotlinCompile> {
-            compilerOptions {
-                withCompilerArguments {
-                    requiresOptIn()
-                    requiresJsr305()
-                }
-            }
-        }
-    }
-}
-
-internal fun KotlinJvmCompilerOptions.withCompilerArguments(configure: KotlinCompilerArgumentsBuilder.() -> Unit) {
-    val arguments = KotlinCompilerArgumentsBuilder().apply(configure).build()
-
-    freeCompilerArgs.addAll(arguments)
+    withSourcesJar()
 }
