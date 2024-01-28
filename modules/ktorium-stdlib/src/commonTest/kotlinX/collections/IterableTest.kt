@@ -6,12 +6,19 @@ import kotlin.test.assertEquals
 internal class IterableTest {
 
     @Test
-    fun dropUntil_predicateNeverTrue_returnsEmpty() {
+    fun dropFirst_listOfItems_returnsTail() {
+        val values = listOf(1, 2)
+
+        val result = values.dropFirst()
+
+        assertEquals(listOf(2), result)
+    }
+
+    @Test
+    fun dropUntil_predicateAlwaysFalse_returnsEmpty() {
         val values = (1..10).asIterable()
 
-        val result = values.dropUntil {
-            false
-        }
+        val result = values.dropUntil { false }
 
         assertEquals(emptyList(), result)
     }
@@ -20,9 +27,7 @@ internal class IterableTest {
     fun dropUntil_predicateTrueOnThree_returnsEmpty() {
         val values = (1..10).asIterable()
 
-        val result = values.dropUntil {
-            it == 6
-        }
+        val result = values.dropUntil { it == 6 }
 
         assertEquals(listOf(6, 7, 8, 9, 10), result)
     }
@@ -37,6 +42,16 @@ internal class IterableTest {
     }
 
     @Test
+    fun firstOrDefault_predicateAlwaysFalse_returnDefault() {
+        val numbers = (1..10).asIterable()
+        val default = 33
+
+        val first = numbers.firstOrDefault({ false }, default)
+
+        assertEquals(default, first)
+    }
+
+    @Test
     fun firstOrElse_firstEvenNumber_returnFirstPredicate() {
         val numbers = (1..10).asIterable()
 
@@ -48,13 +63,11 @@ internal class IterableTest {
     }
 
     @Test
-    fun firstOrElse_alwaysFalse_returnDefaultValue() {
+    fun firstOrElse_predicateAlwaysFalse_returnDefaultValue() {
         val numbers = (1..10).asIterable()
         val value = 33
 
-        val first = numbers.firstOrElse({ false }) {
-            value
-        }
+        val first = numbers.firstOrElse({ false }) { value }
 
         assertEquals(value, first)
     }
@@ -72,9 +85,7 @@ internal class IterableTest {
     fun lastOrElse_lastEvenNumber_returnFirstPredicate() {
         val numbers = (1..11).asIterable()
 
-        val first = numbers.lastOrElse({ it % 2 == 0 }) {
-            33
-        }
+        val first = numbers.lastOrElse({ it % 2 == 0 }) { 33 }
 
         assertEquals(10, first)
     }
@@ -84,9 +95,7 @@ internal class IterableTest {
         val numbers = (1..11).asIterable()
         val value = 33
 
-        val first = numbers.lastOrElse({ false }) {
-            value
-        }
+        val first = numbers.lastOrElse({ false }) { value }
 
         assertEquals(value, first)
     }
@@ -95,9 +104,7 @@ internal class IterableTest {
     fun takeUntil_predicateNeverTrue_returnsEmpty() {
         val values = (1..10).asIterable()
 
-        val result = values.takeUntil {
-            false
-        }
+        val result = values.takeUntil { false }
 
         assertEquals(values.toList(), result)
     }
@@ -106,9 +113,7 @@ internal class IterableTest {
     fun takeUntil_predicateTrueOnThree_returnsEmpty() {
         val values = (1..10).asIterable()
 
-        val result = values.takeUntil {
-            it == 6
-        }
+        val result = values.takeUntil { it == 6 }
 
         assertEquals(listOf(1, 2, 3, 4, 5), result)
     }

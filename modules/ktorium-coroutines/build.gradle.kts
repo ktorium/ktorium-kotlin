@@ -6,9 +6,10 @@ import org.ktorium.kotlin.gradle.plugin.api
 
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.dokka")
 
     id("build.base")
-    id("build.publication")
+    id("org.ktorium.kotlin.gradle.plugins.publication")
 }
 
 configurations.all {
@@ -20,13 +21,25 @@ configurations.all {
 kotlin {
     explicitApi()
 
-    jvm {
+    targets.all {
         compilations.all {
             compilerOptions.configure {
                 withCompilerArguments {
                     requiresOptIn()
+                    suppressExpectActualClasses()
+                    suppressVersionWarnings()
+                }
+            }
+        }
+    }
+
+    jvm {
+        compilations.all {
+            compilerOptions.configure {
+                withCompilerArguments {
                     requiresJsr305()
                 }
+                jvmTarget.set(ktoriumBuild.mainJvmVersion)
             }
         }
     }
@@ -69,6 +82,8 @@ kotlin {
             dependencies {
                 api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
                 api("org.jetbrains.kotlinx", "kotlinx-coroutines-core")
+
+                api(project(":ktorium-annotations"))
             }
         }
 

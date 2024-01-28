@@ -8,8 +8,8 @@ internal class StringTest {
 
     @Test
     fun equalsIgnoreCase_equalStrings_returnTrue() {
-        val value = "lemon"
-        val other = "LEMON"
+        val value = "value"
+        val other = "VALUE"
 
         val result = value.equalsIgnoreCase(other)
 
@@ -17,8 +17,8 @@ internal class StringTest {
     }
 
     @Test
-    fun equalsIgnoreCase_notQqualStrings_returnTrue() {
-        val value = "lemon"
+    fun equalsIgnoreCase_notEqualStrings_returnTrue() {
+        val value = "value"
         val other = "123"
 
         val result = value.equalsIgnoreCase(other)

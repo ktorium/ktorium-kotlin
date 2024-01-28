@@ -1,0 +1,4 @@
+public final class org/ktorium/serialization/json/EmptyJsonObjectKt {
+	public static final fun emptyJsonObject ()Lkotlinx/serialization/json/JsonObject;
+}
+

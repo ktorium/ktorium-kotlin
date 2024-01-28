@@ -1,0 +1,109 @@
+public final class org/ktorium/kotlin/stdlib/ArrayKt {
+	public static final fun dropFirst ([Ljava/lang/Object;)Ljava/util/List;
+	public static final fun dropLast ([Ljava/lang/Object;)Ljava/util/List;
+	public static final fun dropLastUntil ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun dropUntil ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun firstOrDefault ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;)Ljava/lang/Object;
+	public static final fun firstOrElse ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun lastOrDefault ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;)Ljava/lang/Object;
+	public static final fun lastOrElse ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun takeLastUntil ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun takeUntil ([Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class org/ktorium/kotlin/stdlib/BooleanKt {
+	public static final fun orFalse (Ljava/lang/Boolean;)Z
+	public static final fun orTrue (Ljava/lang/Boolean;)Z
+	public static final fun toInt (Z)I
+}
+
+public final class org/ktorium/kotlin/stdlib/ByteKt {
+	public static final fun orZero (Ljava/lang/Byte;)B
+	public static final fun shl (BI)B
+	public static final fun shr (BI)B
+	public static final fun takeIfNotZero (Ljava/lang/Byte;)Ljava/lang/Byte;
+}
+
+public final class org/ktorium/kotlin/stdlib/CharSequenceKt {
+	public static final fun isNotNullOrBlank (Ljava/lang/CharSequence;)Z
+	public static final fun isNotNullOrEmpty (Ljava/lang/CharSequence;)Z
+	public static final fun isNumeric (Ljava/lang/CharSequence;)Z
+}
+
+public final class org/ktorium/kotlin/stdlib/DoubleKt {
+	public static final fun orZero (Ljava/lang/Double;)D
+	public static final fun takeIfNotZero (Ljava/lang/Double;)Ljava/lang/Double;
+}
+
+public final class org/ktorium/kotlin/stdlib/FloatKt {
+	public static final fun orZero (Ljava/lang/Float;)F
+	public static final fun takeIfNotZero (Ljava/lang/Float;)Ljava/lang/Float;
+}
+
+public final class org/ktorium/kotlin/stdlib/IntKt {
+	public static final fun orZero (Ljava/lang/Integer;)I
+	public static final fun takeIfNotZero (Ljava/lang/Integer;)Ljava/lang/Integer;
+}
+
+public final class org/ktorium/kotlin/stdlib/LongKt {
+	public static final fun orZero (Ljava/lang/Long;)J
+	public static final fun takeIfNotZero (Ljava/lang/Long;)Ljava/lang/Long;
+}
+
+public final class org/ktorium/kotlin/stdlib/PairKt {
+	public static final fun swap (Lkotlin/Pair;)Lkotlin/Pair;
+}
+
+public final class org/ktorium/kotlin/stdlib/StandardKt {
+	public static final fun alsoIf (Ljava/lang/Object;ZLkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun applyIf (Ljava/lang/Object;ZLkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun getOrElse (Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun getOrThrow (Ljava/lang/Object;Ljava/lang/Throwable;)Ljava/lang/Object;
+	public static final fun isNotNull (Ljava/lang/Object;)Z
+	public static final fun isNull (Ljava/lang/Object;)Z
+	public static final fun letIf (Ljava/lang/Object;ZLkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun runIf (Ljava/lang/Object;ZLkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class org/ktorium/kotlin/stdlib/StringKt {
+	public static final fun equalsIgnoreCase (Ljava/lang/String;Ljava/lang/String;)Z
+}
+
+public final class org/ktorium/kotlin/stdlib/collections/IterableKt {
+	public static final fun dropFirst (Ljava/lang/Iterable;)Ljava/util/List;
+	public static final fun dropUntil (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun filterNotNullBy (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/util/Collection;
+	public static final fun filterNotNullTo (Ljava/lang/Iterable;Ljava/util/Collection;Lkotlin/jvm/functions/Function1;)Ljava/util/Collection;
+	public static final fun firstOrDefault (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;)Ljava/lang/Object;
+	public static final fun firstOrElse (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun indexOfFirstOrNull (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/lang/Integer;
+	public static final fun indexOfLastOrNull (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/lang/Integer;
+	public static final fun lastOrDefault (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;)Ljava/lang/Object;
+	public static final fun lastOrElse (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun takeUntil (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class org/ktorium/kotlin/stdlib/collections/ListKt {
+	public static final fun dropLast (Ljava/util/List;)Ljava/util/List;
+	public static final fun dropLastUntil (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun takeLastUntil (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class org/ktorium/kotlin/stdlib/collections/MutableMapKt {
+	public static final fun computeIfAbsent (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public final class org/ktorium/kotlin/stdlib/platform/Platform : java/lang/Enum {
+	public static final field JS Lorg/ktorium/kotlin/stdlib/platform/Platform;
+	public static final field JVM Lorg/ktorium/kotlin/stdlib/platform/Platform;
+	public static final field WASM_JS Lorg/ktorium/kotlin/stdlib/platform/Platform;
+	public static final field WASM_WASI Lorg/ktorium/kotlin/stdlib/platform/Platform;
+	public static fun valueOf (Ljava/lang/String;)Lorg/ktorium/kotlin/stdlib/platform/Platform;
+	public static fun values ()[Lorg/ktorium/kotlin/stdlib/platform/Platform;
+}
+
+public final class org/ktorium/kotlin/stdlib/platform/RuntimePlatform {
+	public static final field INSTANCE Lorg/ktorium/kotlin/stdlib/platform/RuntimePlatform;
+	public final fun currentPlatform ()Lorg/ktorium/kotlin/stdlib/platform/Platform;
+}
+

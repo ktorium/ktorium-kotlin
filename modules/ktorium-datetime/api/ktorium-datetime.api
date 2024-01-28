@@ -1,0 +1,95 @@
+public class org/ktorium/datetime/FixedClock : kotlinx/datetime/Clock {
+	public static final field Companion Lorg/ktorium/datetime/FixedClock$Companion;
+	public fun <init> (Lkotlinx/datetime/Instant;)V
+	public fun now ()Lkotlinx/datetime/Instant;
+	public final fun nowOrNull ()Lkotlinx/datetime/Instant;
+}
+
+public final class org/ktorium/datetime/FixedClock$Companion {
+}
+
+public final class org/ktorium/datetime/InstantKt {
+	public static final fun durationSince (Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;)J
+	public static final fun durationUntil (Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;)J
+	public static final fun getEPOCH (Lkotlinx/datetime/Instant$Companion;)Lkotlinx/datetime/Instant;
+	public static final fun parseOrNull (Lkotlinx/datetime/Instant$Companion;Ljava/lang/String;)Lkotlinx/datetime/Instant;
+	public static final fun plus (Lkotlinx/datetime/Instant;Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/Instant;
+	public static final fun toLocalDate (Lkotlinx/datetime/Instant;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDate;
+	public static final fun toLocalTime (Lkotlinx/datetime/Instant;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalTime;
+}
+
+public final class org/ktorium/datetime/Instant_jvmKt {
+	public static final fun minusDays (Ljava/time/Instant;J)Ljava/time/Instant;
+	public static final fun plusDays (Ljava/time/Instant;J)Ljava/time/Instant;
+}
+
+public final class org/ktorium/datetime/LocalDateKt {
+	public static final fun asEndOfDay (Lkotlinx/datetime/LocalDate;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun asStartOfDay (Lkotlinx/datetime/LocalDate;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun now (Lkotlinx/datetime/LocalDate$Companion;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDate;
+	public static final fun parseOrNull (Lkotlinx/datetime/LocalDate$Companion;Ljava/lang/String;)Lkotlinx/datetime/LocalDate;
+	public static final fun plusDays (Lkotlinx/datetime/LocalDate;I)Lkotlinx/datetime/LocalDate;
+	public static final fun withDayOfMonth (Lkotlinx/datetime/LocalDate;I)Lkotlinx/datetime/LocalDate;
+}
+
+public final class org/ktorium/datetime/LocalDateTimeKt {
+	public static final fun asEndOfDay (Lkotlinx/datetime/LocalDateTime;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun asStartOfDay (Lkotlinx/datetime/LocalDateTime;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun asStartOfMonth (Lkotlinx/datetime/LocalDateTime;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun asStartOfWeek (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun asStartOfYear (Lkotlinx/datetime/LocalDateTime;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun minusDays (Lkotlinx/datetime/LocalDateTime;ILkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun minusMonths (Lkotlinx/datetime/LocalDateTime;ILkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun now (Lkotlinx/datetime/LocalDateTime$Companion;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun parseOrNull (Lkotlinx/datetime/LocalDateTime$Companion;Ljava/lang/String;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun plus (Lkotlinx/datetime/LocalDateTime;ILkotlinx/datetime/DateTimeUnit;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun plusDays (Lkotlinx/datetime/LocalDateTime;ILkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun plusMonths (Lkotlinx/datetime/LocalDateTime;ILkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun withDayOfMonth (Lkotlinx/datetime/LocalDateTime;I)Lkotlinx/datetime/LocalDateTime;
+	public static final fun withMonth (Lkotlinx/datetime/LocalDateTime;Ljava/time/Month;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun withPreviousOrSameDayOfWeek (Lkotlinx/datetime/LocalDateTime;Ljava/time/DayOfWeek;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDateTime;
+}
+
+public final class org/ktorium/datetime/LocalTimeKt {
+	public static final fun atDate (Lkotlinx/datetime/LocalTime;Lkotlinx/datetime/LocalDate;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun atTime (Lkotlinx/datetime/LocalDate;Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/LocalDateTime;
+	public static final fun distanceInSeconds (Lkotlinx/datetime/LocalTime;Lkotlinx/datetime/LocalTime;)I
+	public static final fun distanceTo (Lkotlinx/datetime/LocalTime;Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/LocalTime;
+	public static final fun getAsDuration (Lkotlinx/datetime/LocalTime;)J
+	public static final fun getMAX (Lkotlinx/datetime/LocalTime$Companion;)Lkotlinx/datetime/LocalTime;
+	public static final fun getMIN (Lkotlinx/datetime/LocalTime$Companion;)Lkotlinx/datetime/LocalTime;
+	public static final fun getTotalMinutes (Lkotlinx/datetime/LocalTime;)D
+	public static final fun getTotalSeconds (Lkotlinx/datetime/LocalTime;)I
+	public static final fun invoke-HG0u8IE (Lkotlinx/datetime/LocalTime$Companion;J)Lkotlinx/datetime/LocalTime;
+	public static final fun isValid (Lkotlinx/datetime/LocalTime$Companion;Ljava/lang/String;)Z
+	public static final fun now (Lkotlinx/datetime/LocalTime$Companion;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalTime;
+	public static final fun ofInt (Lkotlinx/datetime/LocalTime$Companion;I)Lkotlinx/datetime/LocalTime;
+	public static final fun ofMillis (Lkotlinx/datetime/LocalTime$Companion;I)Lkotlinx/datetime/LocalTime;
+	public static final fun ofSeconds (Lkotlinx/datetime/LocalTime$Companion;I)Lkotlinx/datetime/LocalTime;
+	public static final fun parseAs12H (Lkotlinx/datetime/LocalTime$Companion;Ljava/lang/String;)Lkotlinx/datetime/LocalTime;
+	public static final fun parseOrNull (Lkotlinx/datetime/LocalTime$Companion;Ljava/lang/String;)Lkotlinx/datetime/LocalTime;
+	public static final fun takeIfNotZero (Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/LocalTime;
+	public static final fun toInt (Lkotlinx/datetime/LocalTime;)I
+	public static final fun truncateMinutes (Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/LocalTime;
+	public static final fun truncateNanos (Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/LocalTime;
+	public static final fun truncateSeconds (Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/LocalTime;
+	public static final fun withTime (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/LocalTime;I)Lkotlinx/datetime/LocalDateTime;
+	public static synthetic fun withTime$default (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/LocalTime;IILjava/lang/Object;)Lkotlinx/datetime/LocalDateTime;
+}
+
+public final class org/ktorium/datetime/MonthKt {
+	public static final fun daysIn (Ljava/time/Month;I)I
+}
+
+public final class org/ktorium/datetime/TimeZoneKt {
+	public static final fun ofOrNull (Lkotlinx/datetime/TimeZone$Companion;Ljava/lang/String;)Lkotlinx/datetime/TimeZone;
+}
+
+public final class org/ktorium/datetime/Year {
+	public static final field Companion Lorg/ktorium/datetime/Year$Companion;
+}
+
+public final class org/ktorium/datetime/Year$Companion {
+	public final fun isLeap (I)Z
+}
+

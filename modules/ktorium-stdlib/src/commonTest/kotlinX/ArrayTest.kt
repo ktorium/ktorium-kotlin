@@ -6,28 +6,6 @@ import kotlin.test.assertEquals
 internal class ArrayTest {
 
     @Test
-    fun dropLastUntil_predicateNeverTrue_returnsEmpty() {
-        val values = (1..10).toList().toTypedArray()
-
-        val result = values.dropLastUntil {
-            false
-        }
-
-        assertEquals(emptyList(), result)
-    }
-
-    @Test
-    fun dropLastUntil_predicateTrueOnThree_returnsEmpty() {
-        val values = (1..10).toList().toTypedArray()
-
-        val result = values.dropLastUntil {
-            it == 3
-        }
-
-        assertEquals(listOf(1, 2, 3), result)
-    }
-
-    @Test
     fun dropUntil_predicateNeverTrue_returnsEmpty() {
         val values = (1..10).toList().toTypedArray()
 
@@ -47,6 +25,28 @@ internal class ArrayTest {
         }
 
         assertEquals(listOf(6, 7, 8, 9, 10), result)
+    }
+
+    @Test
+    fun dropLastUntil_predicateNeverTrue_returnsEmpty() {
+        val values = (1..10).toList().toTypedArray()
+
+        val result = values.dropLastUntil {
+            false
+        }
+
+        assertEquals(emptyList(), result)
+    }
+
+    @Test
+    fun dropLastUntil_predicateTrueOnThree_returnsEmpty() {
+        val values = (1..10).toList().toTypedArray()
+
+        val result = values.dropLastUntil {
+            it == 3
+        }
+
+        assertEquals(listOf(1, 2, 3), result)
     }
 
     @Test

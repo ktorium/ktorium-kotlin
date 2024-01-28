@@ -2,8 +2,22 @@
 
 package org.ktorium.kotlin.stdlib.platform
 
-public interface Platform {
-    public val name: String
+import org.ktorium.kotlin.ExperimentalKtorium
+
+/**
+ * List of supported Kotlin runtime platforms.
+ */
+public enum class Platform {
+    JVM,
+    JS,
+    WASM_JS,
+    WASM_WASI,
 }
 
-public expect fun getPlatform(): Platform
+@ExperimentalKtorium
+public expect object RuntimePlatform {
+    /**
+     * Get the current Kotlin runtime platform.
+     */
+    public fun currentPlatform(): Platform
+}

@@ -1,16 +1,21 @@
 package org.ktorium.kotlin.stdlib.collections
 
+import org.ktorium.kotlin.ExperimentalKtorium
+
 /**
- * Retrieves the element corresponding to [key] from this map if it already exists. Otherwise,
- * creates it by calling [initializer] and saving the result to the map
+ * Retrieves the element corresponding to [key] from this map if it already exists, otherwise,
+ * creates it by calling [initializer] and saving the result to the map.
  */
+@ExperimentalKtorium
 public inline fun <K, E> MutableMap<K, E>.computeIfAbsent(key: K, initializer: () -> E): E {
     val value = this[key]
-    if (value == null) {
+
+    return if (value == null) {
         val initial = initializer()
         this[key] = initial
-        return initial
-    }
 
-    return value
+        initial
+    } else {
+        value
+    }
 }

@@ -1,32 +1,25 @@
 package org.ktorium.kotlin.stdlib
 
-import kotlin.contracts.contract
+import org.ktorium.kotlin.ExperimentalKtorium
 
 /**
- * Checks whether a String is numeric (meaning it contains an Integer)
+ * Checks whether a String only contains digits.
  */
+@ExperimentalKtorium
 public fun CharSequence.isNumeric(): Boolean = all(Char::isDigit)
 
 /**
- * Returns `false` if this nullable char sequence is either `null` or empty.
- *
- * @see isNullOrEmpty
+ * Check if [this] is not `null` or empty string, otherwise, return `false`.
  */
+@ExperimentalKtorium
 public fun CharSequence?.isNotNullOrEmpty(): Boolean {
-    contract {
-        returns(true) implies (this@isNotNullOrEmpty != null)
-    }
-
     return !isNullOrEmpty()
 }
 
 /**
- * Returns `false` if this nullable char sequence is either `null` or empty or consists solely of whitespace characters.
+ * Check if [this] is not `null` or consists only of whitespace characters, otherwise, return `false`.
  */
+@ExperimentalKtorium
 public fun CharSequence?.isNotNullOrBlank(): Boolean {
-    contract {
-        returns(true) implies (this@isNotNullOrBlank != null)
-    }
-
     return !isNullOrBlank()
 }

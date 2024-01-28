@@ -1,6 +1,9 @@
 package org.ktorium.kotlin.stdlib
 
+import org.ktorium.kotlin.ExperimentalKtorium
+
 /**
- * Return `true` if the strings are equal ignoring the casing, otherwise `false`
+ * Check if [this] string is equal to [other] string, ignoring the casing, otherwise `false`
  */
-public fun String.equalsIgnoreCase(otherString: String): Boolean = equals(otherString, true)
+@ExperimentalKtorium
+public fun String.equalsIgnoreCase(other: String): Boolean = equals(other, true)

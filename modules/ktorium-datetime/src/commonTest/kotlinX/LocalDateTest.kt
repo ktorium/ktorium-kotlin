@@ -18,11 +18,20 @@ internal class LocalDateTest {
     }
 
     @Test
-    fun endOfDate_valid_validStartOfDay() {
-        val expected = LocalDateTime(2023, 12, 25, 23, 59, 59, 999999999)
+    fun endOfDate_valid_validEndOfDay() {
+        val expected = LocalDateTime(2023, 12, 25, 23, 59, 59, 999_999_999)
 
         val localDate = LocalDate(2023, 12, 25).getEndOfDay()
 
         assertEquals(expected, localDate)
+    }
+
+    @Test
+    fun parseOrNull_validDate_success() {
+        val expected = LocalDate.parse("2019-10-01")
+
+        val value = LocalDate.parseOrNull("2019-10-01")
+
+        assertEquals(expected, value)
     }
 }

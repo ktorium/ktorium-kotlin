@@ -9,9 +9,7 @@ internal class ListTest {
     fun dropLastUntil_predicateNeverTrue_returnsEmpty() {
         val values = (1..10).toList()
 
-        val result = values.dropLastUntil {
-            false
-        }
+        val result = values.dropLastUntil { false }
 
         assertEquals(emptyList(), result)
     }
@@ -20,9 +18,7 @@ internal class ListTest {
     fun dropLastUntil_predicateTrueOnThree_returnsEmpty() {
         val values = (1..10).toList()
 
-        val result = values.dropLastUntil {
-            it == 3
-        }
+        val result = values.dropLastUntil { it == 3 }
 
         assertEquals(listOf(1, 2, 3), result)
     }
@@ -59,9 +55,7 @@ internal class ListTest {
     fun takeLastUntil_predicateNeverTrue_returnsEmpty() {
         val values = (1..10).toList()
 
-        val result = values.takeLastUntil {
-            false
-        }
+        val result = values.takeLastUntil { false }
 
         assertEquals(values.toList(), result)
     }
@@ -70,9 +64,7 @@ internal class ListTest {
     fun takeLastUntil_predicateTrueOnThree_returnsEmpty() {
         val values = (1..10).toList()
 
-        val result = values.takeLastUntil {
-            it == 7
-        }
+        val result = values.takeLastUntil { it == 7 }
 
         assertEquals(listOf(8, 9, 10), result)
     }
@@ -81,9 +73,7 @@ internal class ListTest {
     fun takeUntil_predicateNeverTrue_returnsEmpty() {
         val values = (1..10).toList()
 
-        val result = values.takeUntil {
-            false
-        }
+        val result = values.takeUntil { false }
 
         assertEquals(values.toList(), result)
     }
@@ -92,9 +82,7 @@ internal class ListTest {
     fun takeUntil_predicateTrueOnThree_returnsEmpty() {
         val values = (1..10).toList()
 
-        val result = values.takeUntil {
-            it == 6
-        }
+        val result = values.takeUntil { it == 6 }
 
         assertEquals(listOf(1, 2, 3, 4, 5), result)
     }

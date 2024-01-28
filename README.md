@@ -18,36 +18,22 @@ Kotlin extensions of official libraries.
 <table>
     <thead>
         <tr>
-            <th><strong>ktorium-stdlib</strong></th>
+            <th><strong>ktorium-kotlin</strong></th>
             <th><strong>Kotlin API</strong></th>
             <th><strong>Kotlin Coroutines</strong></th>
             <th><strong>Kotlin Serialization</strong></th>
+            <th><strong>Kotlin DateTime</strong></th>
+            <th><strong>Kotlin IO</strong></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1.0.0</td>
-            <td>1.9</td>
-            <td>TODO</td>
-            <td>TODO</td>
-        </tr>
-        <tr>
-            <td>1.0.0</td>
-            <td>1.8</td>
-            <td>TODO</td>
-            <td>TODO</td>
-        </tr>
-        <tr>
-            <td>1.0.0</td>
-            <td>1.7</td>
-            <td>TODO</td>
-            <td>TODO</td>
-        </tr>
-        <tr>
-            <td>1.0.0</td>
+            <td>0.0.1</td>
             <td>1.6</td>
-            <td>TODO</td>
-            <td>TODO</td>
+            <td>1.7.3</td>
+            <td>1.6.2</td>
+            <td>0.5.0</td>
+            <td>0.3.0</td>
         </tr>
     </tbody>
 </table>

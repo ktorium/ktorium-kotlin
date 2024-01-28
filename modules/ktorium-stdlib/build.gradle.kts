@@ -5,9 +5,11 @@ import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.dokka")
+    id("org.jetbrains.kotlinx.kover")
 
     id("build.base")
-    id("build.publication")
+    id("org.ktorium.kotlin.gradle.plugins.publication")
 }
 
 configurations.all {
@@ -19,11 +21,22 @@ configurations.all {
 kotlin {
     explicitApi()
 
-    jvm {
+    targets.all {
         compilations.all {
             compilerOptions.configure {
                 withCompilerArguments {
                     requiresOptIn()
+                    suppressExpectActualClasses()
+                    suppressVersionWarnings()
+                }
+            }
+        }
+    }
+
+    jvm {
+        compilations.all {
+            compilerOptions.configure {
+                withCompilerArguments {
                     requiresJsr305()
                 }
                 jvmTarget.set(ktoriumBuild.mainJvmVersion)
@@ -80,6 +93,9 @@ kotlin {
         val commonMain by getting {
             kotlin {
                 srcDirs("src/commonMain/kotlinX")
+            }
+            dependencies {
+                api(project(":ktorium-annotations"))
             }
         }
 
