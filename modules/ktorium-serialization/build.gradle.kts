@@ -10,8 +10,8 @@ plugins {
     kotlin("plugin.serialization")
     id("org.jetbrains.dokka")
 
-    id("build.base")
-    id("org.ktorium.kotlin.gradle.plugins.publication")
+    id("build-plugin")
+    id("publication-plugin")
 }
 
 configurations.all {

@@ -8,8 +8,8 @@ plugins {
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")
 
-    id("build.base")
-    id("org.ktorium.kotlin.gradle.plugins.publication")
+    id("build-plugin")
+    id("publication-plugin")
 }
 
 configurations.all {

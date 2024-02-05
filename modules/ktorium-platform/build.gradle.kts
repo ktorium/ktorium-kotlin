@@ -1,7 +1,7 @@
 plugins {
     id("java-platform")
 
-    id("org.ktorium.kotlin.gradle.plugins.publication")
+    id("publication-plugin")
 }
 
 val bomProject = project

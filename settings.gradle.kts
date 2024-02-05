@@ -13,7 +13,6 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
-    includeBuild("build-logic")
 }
 
 dependencyResolutionManagement {
@@ -26,9 +25,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "ktorium-kotlin"
 
-includePlugin("wrapper")
-includePlugin("version")
-includePlugin("publication")
+includePlugin("build-plugin")
+includePlugin("wrapper-plugin")
+includePlugin("version-plugin")
+includePlugin("publication-plugin")
 
 includeModule("ktorium-stdlib")
 includeModule("ktorium-coroutines")

@@ -1,5 +1,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.dokka.DokkaConfiguration.Visibility
+import org.jetbrains.dokka.DokkaDefaults.moduleName
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
@@ -10,9 +11,9 @@ plugins {
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 
-    id("org.ktorium.kotlin.gradle.plugins.version")
-    id("org.ktorium.kotlin.gradle.plugins.wrapper")
-    id("org.ktorium.kotlin.gradle.plugins.publication")
+    id("version-plugin")
+    id("wrapper-plugin")
+    id("publication-plugin")
 }
 
 allprojects {
@@ -24,6 +25,7 @@ allprojects {
             failOnNonReproducibleResolution()
         }
     }
+
 }
 
 apiValidation {
