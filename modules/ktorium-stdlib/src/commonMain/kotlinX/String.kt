@@ -7,3 +7,9 @@ import org.ktorium.kotlin.ExperimentalKtorium
  */
 @ExperimentalKtorium
 public fun String.equalsIgnoreCase(other: String): Boolean = equals(other, true)
+
+/**
+ * Compare this string with [other] string, ignoring the casing.
+ */
+@ExperimentalKtorium
+public fun String.compareToIgnoreCase(other: String): Int = compareTo(other, true)

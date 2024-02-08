@@ -1,6 +1,3 @@
-@file:OptIn(ExperimentalWasmDsl::class)
-
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 import org.ktorium.kotlin.gradle.plugin.api
 
@@ -66,8 +63,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = ktoriumBuild.kotlinApiVersion.get().version
-                languageVersion = ktoriumBuild.kotlinLanguageVersion.get().version
+                apiVersion = buildCatalog.versions.kotlin.api.version.get()
+                languageVersion = buildCatalog.versions.kotlin.language.version.get()
                 progressiveMode = true
 
                 optIn("kotlin.contracts.ExperimentalContracts")
@@ -80,7 +77,7 @@ kotlin {
                 srcDirs( "src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
+                api(project.dependencies.platform(applicationCatalog.kotlinx.coroutines.bom))
                 api("org.jetbrains.kotlinx", "kotlinx-coroutines-core")
 
                 api(project(":ktorium-annotations"))

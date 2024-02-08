@@ -7,6 +7,8 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
+
+    includeBuild("../../catalogs/build-catalog")
 }
 
 dependencyResolutionManagement {
@@ -18,5 +20,8 @@ dependencyResolutionManagement {
     }
 }
 
+plugins {
+    id("build-catalog")
+}
 
 rootProject.name = "gradle-build-plugin"

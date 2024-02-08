@@ -1,6 +1,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import org.jetbrains.dokka.DokkaConfiguration
 import org.jetbrains.dokka.DokkaConfiguration.Visibility
-import org.jetbrains.dokka.DokkaDefaults.moduleName
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
@@ -11,8 +11,8 @@ plugins {
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 
-    id("version-plugin")
     id("wrapper-plugin")
+    id("version-plugin")
     id("publication-plugin")
 }
 
@@ -35,9 +35,7 @@ apiValidation {
 subprojects {
     tasks.withType<DokkaTaskPartial>().configureEach {
         dokkaSourceSets.configureEach {
-            documentedVisibilities.set(
-                setOf(Visibility.PUBLIC, Visibility.PROTECTED)
-            )
+            documentedVisibilities.set(Visibility.values().toSet())
         }
         failOnWarning.set(true)
         offlineMode.set(true)

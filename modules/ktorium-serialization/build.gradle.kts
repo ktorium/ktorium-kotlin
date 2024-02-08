@@ -83,8 +83,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = ktoriumBuild.kotlinApiVersion.get().version
-                languageVersion = ktoriumBuild.kotlinLanguageVersion.get().version
+                apiVersion = buildCatalog.versions.kotlin.api.version.get()
+                languageVersion = buildCatalog.versions.kotlin.language.version.get()
                 progressiveMode = true
 
                 optIn("kotlin.contracts.ExperimentalContracts")
@@ -97,7 +97,7 @@ kotlin {
                 srcDirs( "src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.2"))
+                api(project.dependencies.platform(applicationCatalog.kotlinx.serialization.bom))
                 api("org.jetbrains.kotlinx", "kotlinx-serialization-core")
                 api("org.jetbrains.kotlinx", "kotlinx-serialization-json")
 

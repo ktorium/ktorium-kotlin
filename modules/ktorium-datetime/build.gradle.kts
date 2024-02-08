@@ -80,8 +80,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = ktoriumBuild.kotlinApiVersion.get().version
-                languageVersion = ktoriumBuild.kotlinLanguageVersion.get().version
+                apiVersion = buildCatalog.versions.kotlin.api.version.get()
+                languageVersion = buildCatalog.versions.kotlin.language.version.get()
                 progressiveMode = true
 
                 optIn("kotlin.contracts.ExperimentalContracts")
@@ -94,7 +94,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+                api(applicationCatalog.kotlinx.datetime)
 
                 api(project(":ktorium-annotations"))
             }

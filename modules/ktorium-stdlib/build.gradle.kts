@@ -81,8 +81,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = ktoriumBuild.kotlinApiVersion.get().version
-                languageVersion = ktoriumBuild.kotlinLanguageVersion.get().version
+                apiVersion = buildCatalog.versions.kotlin.api.version.get()
+                languageVersion = buildCatalog.versions.kotlin.language.version.get()
                 progressiveMode = true
 
                 optIn("kotlin.contracts.ExperimentalContracts")

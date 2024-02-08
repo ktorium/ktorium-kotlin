@@ -2,7 +2,7 @@
 
 pluginManagement {
     plugins {
-        kotlin("multiplatform") version "1.9.22" apply false
+        kotlin("multiplatform") apply false
         kotlin("plugin.serialization") version "1.9.22" apply false
         id("io.gitlab.arturbosch.detekt") version "1.23.4" apply false
         id("org.jetbrains.dokka") version "1.9.10" apply false
@@ -13,6 +13,9 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
+
+    includeBuild("gradle/catalogs/application-catalog")
+    includeBuild("gradle/catalogs/build-catalog")
 }
 
 dependencyResolutionManagement {
@@ -23,12 +26,17 @@ dependencyResolutionManagement {
     }
 }
 
+plugins {
+    id("build-catalog")
+    id("application-catalog")
+}
+
 rootProject.name = "ktorium-kotlin"
 
-includePlugin("build-plugin")
-includePlugin("wrapper-plugin")
-includePlugin("version-plugin")
-includePlugin("publication-plugin")
+includeBuild("gradle/plugins", "build-plugin")
+includeBuild("gradle/plugins", "wrapper-plugin")
+includeBuild("gradle/plugins", "version-plugin")
+includeBuild("gradle/plugins", "publication-plugin")
 
 includeModule("ktorium-stdlib")
 includeModule("ktorium-coroutines")
@@ -45,10 +53,10 @@ fun includeModule(name: String) {
     project(":${name}").projectDir = rootDir.resolve("modules/$name")
 }
 
-fun includePlugin(name: String) {
+fun includeBuild(directory: String, name: String) {
     require(name.isNotBlank())
 
-    val gradlePluginDirectory: File = rootDir.resolve("gradle/plugins/$name")
+    val buildModuleDirectory: File = rootDir.resolve("$directory/$name")
 
-    includeBuild(gradlePluginDirectory)
+    includeBuild(buildModuleDirectory)
 }
