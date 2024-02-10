@@ -1,15 +1,12 @@
 import io.gitlab.arturbosch.detekt.Detekt
-import org.jetbrains.dokka.DokkaConfiguration
-import org.jetbrains.dokka.DokkaConfiguration.Visibility
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
-    kotlin("multiplatform") apply false
-    id("io.gitlab.arturbosch.detekt")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.binary-compatibility-validator")
+    alias(buildCatalog.plugins.org.jetbrains.kotlin.multiplatform) apply false
+    alias(buildCatalog.plugins.io.gitlab.arturbosch.detekt)
+    //alias(buildCatalog.plugins.org.jetbrains.dokka)
+    alias(buildCatalog.plugins.org.jetbrains.kotlinx.binary.compatibility.validator)
 
     id("wrapper-plugin")
     id("version-plugin")
@@ -25,7 +22,6 @@ allprojects {
             failOnNonReproducibleResolution()
         }
     }
-
 }
 
 apiValidation {
@@ -33,19 +29,19 @@ apiValidation {
 }
 
 subprojects {
-    tasks.withType<DokkaTaskPartial>().configureEach {
-        dokkaSourceSets.configureEach {
-            documentedVisibilities.set(Visibility.values().toSet())
-        }
-        failOnWarning.set(true)
-        offlineMode.set(true)
-    }
+//    tasks.withType<DokkaTaskPartial>().configureEach {
+//        dokkaSourceSets.configureEach {
+//            documentedVisibilities.set(Visibility.values().toSet())
+//        }
+//        failOnWarning.set(true)
+//        offlineMode.set(true)
+//    }
 }
 
 tasks {
-    dokkaHtmlMultiModule.configure {
-        moduleName.set(rootProject.name)
-    }
+    //dokkaHtmlMultiModule.configure {
+    //    moduleName.set(rootProject.name)
+    //}
 
     val detektAll by registering(Detekt::class) {
         description = "Run detekt on whole project"

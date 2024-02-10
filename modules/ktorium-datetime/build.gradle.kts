@@ -1,11 +1,12 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
+import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerToolOptions
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.dokka")
+    alias(buildCatalog.plugins.org.jetbrains.kotlin.multiplatform)
+    alias(buildCatalog.plugins.org.jetbrains.dokka)
+    alias(buildCatalog.plugins.org.jetbrains.kotlinx.kover)
 
     id("build-plugin")
     id("publication-plugin")
@@ -15,6 +16,24 @@ configurations.all {
     resolutionStrategy {
         failOnNonReproducibleResolution()
     }
+}
+
+public class KotlinCompilerArgumentsBuilder {
+    private val arguments: MutableList<String> = mutableListOf()
+
+    public fun add(arg: String): Boolean = arguments.add(arg)
+    public fun requiresOptIn(): Boolean = arguments.add("-opt-in=kotlin.RequiresOptIn")
+    public fun requiresJsr305(value: String = "strict"): Boolean = arguments.add("-Xjsr305=$value")
+    public fun suppressExpectActualClasses(): Boolean = arguments.add("-Xexpect-actual-classes")
+    public fun suppressVersionWarnings(): Boolean = arguments.add("-Xsuppress-version-warnings")
+
+    public fun build(): List<String> = arguments
+}
+
+public fun KotlinCommonCompilerToolOptions.withCompilerArguments(configure: KotlinCompilerArgumentsBuilder.() -> Unit) {
+    val arguments = KotlinCompilerArgumentsBuilder().apply(configure).build()
+
+    freeCompilerArgs.addAll(arguments)
 }
 
 kotlin {

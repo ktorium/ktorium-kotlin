@@ -1,9 +1,10 @@
-import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
-import org.ktorium.kotlin.gradle.plugin.api
+import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerToolOptions
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.dokka")
+    alias(buildCatalog.plugins.org.jetbrains.kotlin.multiplatform)
+    alias(buildCatalog.plugins.org.jetbrains.dokka)
+    alias(buildCatalog.plugins.org.jetbrains.kotlinx.kover)
 
     id("build-plugin")
     id("publication-plugin")
@@ -14,6 +15,40 @@ configurations.all {
         failOnNonReproducibleResolution()
     }
 }
+
+public class KotlinCompilerArgumentsBuilder {
+    private val arguments: MutableList<String> = mutableListOf()
+
+    public fun add(arg: String): Boolean = arguments.add(arg)
+    public fun requiresOptIn(): Boolean = arguments.add("-opt-in=kotlin.RequiresOptIn")
+    public fun requiresJsr305(value: String = "strict"): Boolean = arguments.add("-Xjsr305=$value")
+    public fun suppressExpectActualClasses(): Boolean = arguments.add("-Xexpect-actual-classes")
+    public fun suppressVersionWarnings(): Boolean = arguments.add("-Xsuppress-version-warnings")
+
+    public fun build(): List<String> = arguments
+}
+
+public fun KotlinCommonCompilerToolOptions.withCompilerArguments(configure: KotlinCompilerArgumentsBuilder.() -> Unit) {
+    val arguments = KotlinCompilerArgumentsBuilder().apply(configure).build()
+
+    freeCompilerArgs.addAll(arguments)
+}
+
+private fun notation(group: String, name: String, version: String? = null) =
+    "$group:$name${version?.let { ":$version" } ?: ""}"
+
+public fun KotlinDependencyHandler.api(group: String, name: String, version: String? = null): Dependency? =
+    api(notation(group, name, version))
+
+public fun KotlinDependencyHandler.compileOnly(group: String, name: String, version: String? = null): Dependency? =
+    compileOnly(notation(group, name, version))
+
+public fun KotlinDependencyHandler.implementation(group: String, name: String, version: String? = null): Dependency? =
+    implementation(notation(group, name, version))
+
+public fun KotlinDependencyHandler.runtimeOnly(group: String, name: String, version: String? = null): Dependency? =
+    runtimeOnly(notation(group, name, version))
+
 
 kotlin {
     explicitApi()

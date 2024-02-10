@@ -14,8 +14,7 @@ pluginManagement {
         mavenCentral()
     }
 
-    includeBuild("gradle/catalogs/application-catalog")
-    includeBuild("gradle/catalogs/build-catalog")
+    includeBuild("build-logic")
 }
 
 dependencyResolutionManagement {
@@ -24,11 +23,23 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
     }
-}
 
-plugins {
-    id("build-catalog")
-    id("application-catalog")
+    versionCatalogs {
+        rootDir.resolve("gradle/catalogs").listFiles()?.map {
+            it.nameWithoutExtension to it.absolutePath
+        }?.map {
+            val (key, path) = it
+
+            val pattern = "-([a-z])".toRegex()
+            val name = key.replace(pattern) { value -> value.groupValues[1].uppercase() }
+
+            (name to path)
+        }?.forEach { (name, path) ->
+            create(name) {
+                from(files(path))
+            }
+        }
+    }
 }
 
 rootProject.name = "ktorium-kotlin"
