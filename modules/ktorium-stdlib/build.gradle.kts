@@ -64,6 +64,12 @@ kotlin {
         binaries.library()
     }
 
+//    wasmWasi {
+//        nodejs()
+//
+//        binaries.library()
+//    }
+
     js {
         compilations.all {
             kotlinOptions {
