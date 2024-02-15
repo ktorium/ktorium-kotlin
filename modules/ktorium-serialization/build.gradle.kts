@@ -1,15 +1,16 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
-import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerToolOptions
+import org.jetbrains.kotlin.config.ApiVersion
+import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 
 plugins {
-    alias(buildCatalog.plugins.org.jetbrains.kotlin.multiplatform)
-    alias(buildCatalog.plugins.org.jetbrains.kotlin.plugin.serialization)
-    alias(buildCatalog.plugins.org.jetbrains.dokka)
-    alias(buildCatalog.plugins.org.jetbrains.kotlinx.kover)
-
+    id("org.jetbrains.kotlin.multiplatform")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.dokka")
+    id("org.jetbrains.kotlinx.kover")
     id("build-plugin")
     id("publication-plugin")
 }
@@ -18,24 +19,6 @@ configurations.all {
     resolutionStrategy {
         failOnNonReproducibleResolution()
     }
-}
-
-public class KotlinCompilerArgumentsBuilder {
-    private val arguments: MutableList<String> = mutableListOf()
-
-    public fun add(arg: String): Boolean = arguments.add(arg)
-    public fun requiresOptIn(): Boolean = arguments.add("-opt-in=kotlin.RequiresOptIn")
-    public fun requiresJsr305(value: String = "strict"): Boolean = arguments.add("-Xjsr305=$value")
-    public fun suppressExpectActualClasses(): Boolean = arguments.add("-Xexpect-actual-classes")
-    public fun suppressVersionWarnings(): Boolean = arguments.add("-Xsuppress-version-warnings")
-
-    public fun build(): List<String> = arguments
-}
-
-public fun KotlinCommonCompilerToolOptions.withCompilerArguments(configure: KotlinCompilerArgumentsBuilder.() -> Unit) {
-    val arguments = KotlinCompilerArgumentsBuilder().apply(configure).build()
-
-    freeCompilerArgs.addAll(arguments)
 }
 
 private fun notation(group: String, name: String, version: String? = null) =
@@ -117,8 +100,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                apiVersion = buildCatalog.versions.kotlin.api.version.get()
-                languageVersion = buildCatalog.versions.kotlin.language.version.get()
+                apiVersion = ApiVersion.KOTLIN_1_6.toString()
+                languageVersion = LanguageVersion.KOTLIN_2_0.toString()
                 progressiveMode = true
 
                 optIn("kotlin.contracts.ExperimentalContracts")
@@ -128,10 +111,10 @@ kotlin {
 
         val commonMain by getting {
             kotlin {
-                srcDirs( "src/commonMain/kotlinX")
+                srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform(applicationCatalog.kotlinx.serialization.bom))
+                api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.2"))
                 api("org.jetbrains.kotlinx", "kotlinx-serialization-core")
                 api("org.jetbrains.kotlinx", "kotlinx-serialization-json")
 
@@ -141,7 +124,7 @@ kotlin {
 
         val commonTest by getting {
             kotlin {
-                srcDirs( "src/commonTest/kotlinX")
+                srcDirs("src/commonTest/kotlinX")
             }
             dependencies {
                 implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json")

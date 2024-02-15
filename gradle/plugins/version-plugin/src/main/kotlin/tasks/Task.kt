@@ -8,9 +8,9 @@ internal fun Task.group(value: TaskGroup) {
     group = "$value"
 }
 
-internal fun Task.description(value: String) {
-    require(value.isNotBlank()) {
+internal fun Task.description(description: String) {
+    require(description.isNotBlank()) {
         "The task '$path' shouldn't have a blank description."
     }
-    description = value
+    this.description = description
 }

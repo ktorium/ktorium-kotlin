@@ -3,8 +3,12 @@ plugins {
     `java-gradle-plugin`
 }
 
-run {
-    group = "org.ktorium.kotlin.gradle.plugins"
+kotlin {
+    explicitApi()
+
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 gradlePlugin {
@@ -14,8 +18,4 @@ gradlePlugin {
             implementationClass = "org.ktorium.kotlin.gradle.plugins.version.VersionPlugin"
         }
     }
-}
-
-kotlin {
-    explicitApi()
 }

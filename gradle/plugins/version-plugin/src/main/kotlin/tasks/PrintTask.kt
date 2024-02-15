@@ -18,3 +18,7 @@ public abstract class PrintTask : DefaultTask() {
     @TaskAction
     internal fun print(): Unit = println(message.orNull)
 }
+
+internal fun PrintTask.message(message: String){
+    this.message.set(message)
+}

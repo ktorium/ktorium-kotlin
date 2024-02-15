@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.gradle.api.initialization.resolve.RepositoriesMode.FAIL_ON_PROJECT_REPOS
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -10,12 +8,12 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode = FAIL_ON_PROJECT_REPOS
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 
     repositories {
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
-rootProject.name = "gradle-build-plugin"
+rootProject.name = "buildSrc"

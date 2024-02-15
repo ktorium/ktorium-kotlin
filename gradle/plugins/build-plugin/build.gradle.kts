@@ -1,10 +1,20 @@
+import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
+
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
 }
 
-run {
-    group = "org.ktorium.kotlin.gradle.plugins"
+kotlin {
+    explicitApi()
+
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
 }
 
 gradlePlugin {
@@ -14,12 +24,4 @@ gradlePlugin {
             implementationClass = "org.ktorium.kotlin.gradle.plugins.build.BuildPlugin"
         }
     }
-}
-
-kotlin {
-    explicitApi()
-}
-
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
 }

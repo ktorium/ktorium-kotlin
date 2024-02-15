@@ -9,6 +9,7 @@ import org.ktorium.kotlin.gradle.plugins.version.tasks.PrintTask
 import org.ktorium.kotlin.gradle.plugins.version.tasks.TaskGroup
 import org.ktorium.kotlin.gradle.plugins.version.tasks.description
 import org.ktorium.kotlin.gradle.plugins.version.tasks.group
+import org.ktorium.kotlin.gradle.plugins.version.tasks.message
 
 public class VersionPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
@@ -16,7 +17,7 @@ public class VersionPlugin : Plugin<Project> {
             .configure {
                 group(TaskGroup.HELP)
                 description("Prints the version of the project.")
-                message.set(project.version)
+                message(project.version.toString())
             }
     }
 }

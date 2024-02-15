@@ -18,4 +18,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "gradle-wrapper-plugin"
+gradle.beforeSettings {
+    rootProject.name = "plugins"
+}
+
+include("build-plugin")
+include("publication-plugin")
+include("version-plugin")
+include("wrapper-plugin")
