@@ -8,28 +8,25 @@ import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.creating
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import java.util.*
 
 public class PublicationPlugin : Plugin<Project> {
-
     override fun apply(project: Project): Unit = with(project) {
         apply(plugin = "maven-publish")
         apply(plugin = "signing")
 
-        val signing: SigningExtension = project.extensions.getByType()
-        signing.run {
-            val signingKey = findProperty("GPG_PRIVATE_KEY")?.toString()
-            val signingPassword = findProperty("GPG_PASSPHRASE")?.toString()
+        val signing = project.the<SigningExtension>()
+        val signingKey = findProperty("GPG_PRIVATE_KEY")?.toString()
+        val signingPassword = findProperty("GPG_PASSPHRASE")?.toString()
 
-            if (signingKey != null && signingPassword != null) {
-                useInMemoryPgpKeys(String(Base64.getDecoder().decode(signingKey.toByteArray())), signingPassword)
-            }
+        if (signingKey != null && signingPassword != null) {
+            signing.useInMemoryPgpKeys(String(Base64.getDecoder().decode(signingKey.toByteArray())), signingPassword)
         }
 
-        val publishing: PublishingExtension = project.extensions.getByType()
+        val publishing = project.the<PublishingExtension>()
         publishing.repositories {
             maven {
                 name = "LocalRepository"
@@ -37,13 +34,11 @@ public class PublicationPlugin : Plugin<Project> {
             }
         }
 
-        publishing.publications {
-            withType<MavenPublication>().configureEach {
-                configurePom()
-
-                signing.sign(this)
-            }
+        publishing.publications.withType<MavenPublication>().configureEach {
+            configurePom()
         }
+
+        signing.sign(publishing.publications)
 
         val cleanMavenLocal = tasks.creating {
             group = "build"

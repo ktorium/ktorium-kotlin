@@ -13,6 +13,11 @@
 
 Kotlin extensions of official libraries.
 
+> [!WARNING]
+> ktorium-kotlin is under development.
+>
+> Report any issue or bug <a href="/issues">in the GitHub repository.</a>
+ 
 ## Compatibility
 
 <table>
