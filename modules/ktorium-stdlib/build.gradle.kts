@@ -87,6 +87,8 @@ kotlin {
                 }
             }
         }
+
+        binaries.library()
     }
 
     sourceSets {
