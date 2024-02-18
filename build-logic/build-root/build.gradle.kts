@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 
 plugins {
     `kotlin-dsl`
+    `java-gradle-plugin`
 }
 
 configurations.all {
@@ -22,10 +23,21 @@ kotlin {
     explicitApi()
 
     jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        val mainJvmCompiler = providers.gradleProperty("kotlin.javaToolchain.mainJvmCompiler").map(JavaLanguageVersion::of)
+
+        languageVersion = mainJvmCompiler
     }
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
+}
+
+gradlePlugin {
+    plugins {
+        register("BuildRootPlugin") {
+            id = "build-root-plugin"
+            implementationClass = "org.ktorium.kotlin.gradle.plugins.build.BuildRootPlugin"
+        }
+    }
 }

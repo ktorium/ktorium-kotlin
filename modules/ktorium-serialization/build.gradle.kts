@@ -5,37 +5,17 @@ import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
+import org.ktorium.kotlin.gradle.plugin.api
+import org.ktorium.kotlin.gradle.plugin.implementation
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")
-    id("build-plugin")
-    id("publication-plugin")
+    id("build-root-plugin")
+    id("build-publication-plugin")
 }
-
-configurations.all {
-    resolutionStrategy {
-        failOnNonReproducibleResolution()
-    }
-}
-
-private fun notation(group: String, name: String, version: String? = null) =
-    "$group:$name${version?.let { ":$version" } ?: ""}"
-
-public fun KotlinDependencyHandler.api(group: String, name: String, version: String? = null): Dependency? =
-    api(notation(group, name, version))
-
-public fun KotlinDependencyHandler.compileOnly(group: String, name: String, version: String? = null): Dependency? =
-    compileOnly(notation(group, name, version))
-
-public fun KotlinDependencyHandler.implementation(group: String, name: String, version: String? = null): Dependency? =
-    implementation(notation(group, name, version))
-
-public fun KotlinDependencyHandler.runtimeOnly(group: String, name: String, version: String? = null): Dependency? =
-    runtimeOnly(notation(group, name, version))
-
 
 kotlin {
     explicitApi()
@@ -58,8 +38,13 @@ kotlin {
                 withCompilerArguments {
                     requiresJsr305()
                 }
-                jvmTarget.set(ktoriumBuild.mainJvmVersion)
             }
+        }
+
+        jvmToolchain {
+            val mainJvmCompiler = providers.gradleProperty("kotlin.javaToolchain.mainJvmCompiler").map(JavaLanguageVersion::of)
+
+            languageVersion = mainJvmCompiler
         }
     }
 

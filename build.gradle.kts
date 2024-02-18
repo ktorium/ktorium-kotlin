@@ -10,14 +10,11 @@ plugins {
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 
-    id("wrapper-plugin")
-    id("version-plugin")
-    id("publication-plugin")
+    id("build-wrapper-upgrade")
 }
 
 allprojects {
     group = "org.ktorium.kotlin"
-    version = "1.0.0-SNAPSHOT"
 
     configurations.all {
         resolutionStrategy {

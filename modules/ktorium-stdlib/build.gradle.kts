@@ -9,14 +9,8 @@ plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")
-    id("build-plugin")
-    id("publication-plugin")
-}
-
-configurations.all {
-    resolutionStrategy {
-        failOnNonReproducibleResolution()
-    }
+    id("build-root-plugin")
+    id("build-publication-plugin")
 }
 
 kotlin {
@@ -40,12 +34,13 @@ kotlin {
                 withCompilerArguments {
                     requiresJsr305()
                 }
-                jvmTarget.set(ktoriumBuild.mainJvmVersion)
             }
         }
 
         jvmToolchain {
-            languageVersion = JavaLanguageVersion.of(21)
+            val mainJvmCompiler = providers.gradleProperty("kotlin.javaToolchain.mainJvmCompiler").map(JavaLanguageVersion::of)
+
+            languageVersion = mainJvmCompiler
         }
     }
 

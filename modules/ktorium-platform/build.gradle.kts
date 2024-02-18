@@ -1,7 +1,7 @@
 plugins {
     id("java-platform")
-
-    id("publication-plugin")
+    id("build-root-plugin")
+    id("build-publication-plugin")
 }
 
 val bomProject = project

@@ -8,15 +8,18 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode = RepositoriesMode.PREFER_PROJECT
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 
     repositories {
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 gradle.beforeSettings {
-    rootProject.name = "settings"
+    rootProject.name = "build-logic"
 }
 
-include("root-settings-plugins")
+include("build-root")
+include("build-wrapper-upgrade")
+include("build-publication")

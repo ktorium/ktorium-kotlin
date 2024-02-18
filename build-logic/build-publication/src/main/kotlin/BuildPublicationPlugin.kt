@@ -7,13 +7,12 @@ import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 import java.util.*
 
-public class PublicationPlugin : Plugin<Project> {
+public class BuildPublicationPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         apply(plugin = "maven-publish")
         apply(plugin = "signing")
@@ -40,7 +39,7 @@ public class PublicationPlugin : Plugin<Project> {
 
         signing.sign(publishing.publications)
 
-        val cleanMavenLocal = tasks.creating {
+        val cleanMavenLocal = tasks.register("cleanMavenLocal") {
             group = "build"
             doLast {
                 val home = System.getProperty("user.home")
