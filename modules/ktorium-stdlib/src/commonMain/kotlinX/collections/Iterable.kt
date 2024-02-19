@@ -1,17 +1,17 @@
 package org.ktorium.kotlin.stdlib.collections
 
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 
 /**
  * Get a list containing all elements except first element.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
 
 /**
  * Get a list without the leading elements from [this] until a match against the [predicate] is `true`.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> {
     val result = mutableListOf<T>()
     var yielding = false
@@ -31,31 +31,31 @@ public inline fun <T> Iterable<T>.dropUntil(predicate: (T) -> Boolean): List<T> 
 /**
  * Get the first element matching the given [predicate], otherwise, return [defaultValue] if no such element is found.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.firstOrDefault(predicate: (T) -> Boolean, defaultValue: T): T = firstOrNull(predicate) ?: defaultValue
 
 /**
  * Get the first element matching the given [predicate], otherwise, return the result of calling the [block] function if no such element is found.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.firstOrElse(predicate: (T) -> Boolean, block: () -> T): T = firstOrNull(predicate) ?: block()
 
 /**
  * Get the last element matching the given [predicate], otherwise, return the [defaultValue] if no such element is found.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.lastOrDefault(predicate: (T) -> Boolean, defaultValue: T): T = lastOrNull(predicate) ?: defaultValue
 
 /**
  * Get the last element matching the given [predicate], otherwise, return the result of calling the [block] function if no such element is found.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.lastOrElse(predicate: (T) -> Boolean, block: () -> T): T = lastOrNull(predicate) ?: block()
 
 /**
  * Take the leading elements until a match against the [predicate] is `true`.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.takeUntil(predicate: (T) -> Boolean): List<T> {
     val result = mutableListOf<T>()
     for (item in this) {
@@ -70,26 +70,26 @@ public inline fun <T> Iterable<T>.takeUntil(predicate: (T) -> Boolean): List<T> 
 /**
  * Returns the index of the first element matching the given predicate, or `null` if the element is not found.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.indexOfFirstOrNull(predicate: (T) -> Boolean): Int? = indexOfFirst(predicate).takeIf { it != -1 }
 
 /**
  * Returns the index of the last element matching the given predicate, or `null` if the element is not found.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.indexOfLastOrNull(predicate: (T) -> Boolean): Int? = indexOfLast(predicate).takeIf { it != -1 }
 
 /**
  * Appends all non-null elements matching the given [predicate].
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> Iterable<T>.filterNotNullBy(predicate: (T) -> Boolean): Collection<T> =
     filterNotNullTo(mutableListOf(), predicate)
 
 /**
  * Appends all non-null elements matching the given [predicate] to the given [destination].
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterNotNullTo(destination: C, predicate: (T) -> Boolean): C {
     for (element in this) {
         if ((element != null) && predicate(element)) {

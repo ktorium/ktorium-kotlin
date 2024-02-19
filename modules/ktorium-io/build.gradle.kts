@@ -59,6 +59,10 @@ kotlin {
         binaries.library()
     }
 
+    wasmWasi {
+        nodejs()
+    }
+
     js {
         compilations.all {
             kotlinOptions {
@@ -95,7 +99,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-io-core:0.3.0")
+                api("org.jetbrains.kotlinx:kotlinx-io-core:0.3.1")
 
                 api(project(":ktorium-annotations"))
             }

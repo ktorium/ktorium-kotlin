@@ -1,5 +1,6 @@
 package org.ktorium.kotlin.stdlib
 
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -8,6 +9,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
+@ExperimentalKtoriumApi
 internal class StandardTest {
 
     @Test

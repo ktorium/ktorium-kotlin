@@ -55,15 +55,14 @@ kotlin {
                 }
             }
         }
+        nodejs()
 
         binaries.library()
     }
 
-//    wasmWasi {
-//        nodejs()
-//
-//        binaries.library()
-//    }
+    wasmWasi {
+        nodejs()
+    }
 
     js {
         compilations.all {

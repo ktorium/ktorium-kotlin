@@ -1,6 +1,6 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -8,7 +8,7 @@ import kotlin.contracts.contract
 /**
  * Calls the specified function [block] with [this] value as its receiver if [condition] is `true` and return `this` value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <T> T.applyIf(condition: Boolean, block: T.() -> Unit): T {
     contract {
@@ -25,7 +25,7 @@ public inline fun <T> T.applyIf(condition: Boolean, block: T.() -> Unit): T {
 /**
  * Calls the specified function [block] with [this] value as its argument if [condition] is `true` and returns `this` value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <T> T.alsoIf(condition: Boolean, block: (T) -> Unit): T {
     contract {
@@ -42,7 +42,7 @@ public inline fun <T> T.alsoIf(condition: Boolean, block: (T) -> Unit): T {
 /**
  * Calls the specified function [block] with [this] value as its argument if the [condition] is `true` and returns its result, otherwise return `null` value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <T, R> T.letIf(condition: Boolean, block: (T) -> R): R? {
     contract {
@@ -55,7 +55,7 @@ public inline fun <T, R> T.letIf(condition: Boolean, block: (T) -> R): R? {
 /**
  * Calls the specified function [block] with [this] value as its receiver if the [condition] is `true` and returns its result, otherwise return `null` value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <T, R> T.runIf(condition: Boolean, block: T.() -> R): R? {
     contract {
@@ -68,7 +68,7 @@ public inline fun <T, R> T.runIf(condition: Boolean, block: T.() -> R): R? {
 /**
  * Return [this] value if [this] is not null, otherwise, throw the [cause] exception.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public fun <T> T?.getOrThrow(cause: Throwable): T {
     contract {
@@ -81,7 +81,7 @@ public fun <T> T?.getOrThrow(cause: Throwable): T {
 /**
  * Return [this] value if [this] is not null otherwise, return the [default] value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <reified T> T?.getOrDefault(default: T): T {
     return this ?: default
 }
@@ -89,7 +89,7 @@ public inline fun <reified T> T?.getOrDefault(default: T): T {
 /**
  * Return [this] value if [this] is not null, otherwise, return the result of calling the [block] function.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <T> T?.getOrElse(block: () -> T): T {
     contract {
@@ -102,7 +102,7 @@ public inline fun <T> T?.getOrElse(block: () -> T): T {
 /**
  * Check if [this] value is null.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public fun <T> T?.isNull(): Boolean {
     contract {
@@ -115,7 +115,7 @@ public fun <T> T?.isNull(): Boolean {
 /**
  * Check if [this] value is not null.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public fun <T> T?.isNotNull(): Boolean {
     contract {
@@ -128,7 +128,7 @@ public fun <T> T?.isNotNull(): Boolean {
 /**
  * Casts the [this] value to the specified type [T] if it is not null, otherwise, return `null` value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <reified T> Any?.safeAsOrNull(): T? {
     contract {
@@ -141,7 +141,7 @@ public inline fun <reified T> Any?.safeAsOrNull(): T? {
 /**
  * Casts the [this] value to the specified type [T] if it is not null, otherwise, return the [default] value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <reified T> Any?.safeAsOrDefault(default: T): T {
     return safeAsOrNull() ?: default
 }
@@ -149,7 +149,7 @@ public inline fun <reified T> Any?.safeAsOrDefault(default: T): T {
 /**
  * Casts the [this] value to the specified type [T] if it is not null, otherwise, return the result of calling the [block] function.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <reified T> Any?.safeAsOrElse(block: () -> T): T {
     contract {
@@ -162,7 +162,7 @@ public inline fun <reified T> Any?.safeAsOrElse(block: () -> T): T {
 /**
  * Casts the [this] value to the specified type [T] if it is not null, otherwise, throw the [cause] exception.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <reified T> Any?.safeAsOrThrow(cause: Throwable): T {
     contract {
@@ -175,7 +175,7 @@ public inline fun <reified T> Any?.safeAsOrThrow(cause: Throwable): T {
 /**
  * Casts the [this] value to the specified type [T].
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 @ExperimentalContracts
 public inline fun <reified T> Any?.unsafeCast(): T {
     contract {

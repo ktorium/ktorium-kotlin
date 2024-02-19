@@ -3,12 +3,12 @@
 package org.ktorium.serialization.json
 
 import kotlinx.serialization.json.JsonObject
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 
 private val emptyJsonObject = JsonObject(emptyMap())
 
 /**
  * Returns an empty [JsonObject].
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun emptyJsonObject(): JsonObject = emptyJsonObject

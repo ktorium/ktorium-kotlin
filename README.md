@@ -38,7 +38,7 @@ Kotlin extensions of official libraries.
             <td>1.7.3</td>
             <td>1.6.2</td>
             <td>0.5.0</td>
-            <td>0.3.0</td>
+            <td>0.3.1</td>
         </tr>
     </tbody>
 </table>

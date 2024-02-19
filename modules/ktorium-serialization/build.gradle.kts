@@ -63,6 +63,10 @@ kotlin {
         binaries.library()
     }
 
+    wasmWasi {
+        nodejs()
+    }
+
     js {
         compilations.all {
             kotlinOptions {

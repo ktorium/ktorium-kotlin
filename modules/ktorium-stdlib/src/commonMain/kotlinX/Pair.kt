@@ -1,9 +1,9 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 
 /**
  * Return a new pair with the components swapped.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun <A, B> Pair<A, B>.swap(): Pair<B, A> = Pair(second, first)

@@ -1,8 +1,10 @@
 package org.ktorium.kotlin.stdlib.collections
 
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@ExperimentalKtoriumApi
 internal class IterableTest {
 
     @Test

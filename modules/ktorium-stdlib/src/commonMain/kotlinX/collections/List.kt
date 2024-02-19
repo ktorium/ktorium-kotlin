@@ -1,17 +1,17 @@
 package org.ktorium.kotlin.stdlib.collections
 
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 
 /**
  * Drop the last element of the list.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun <T> List<T>.dropLast(): List<T> = dropLast(1)
 
 /**
  * Drop the last elements from the `List` until a match against the `predicate` is `true`.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> List<T>.dropLastUntil(predicate: (T) -> Boolean): List<T> {
     val iterator = listIterator(size)
 
@@ -27,7 +27,7 @@ public inline fun <T> List<T>.dropLastUntil(predicate: (T) -> Boolean): List<T> 
 /**
  * Take the last elements from the `List` until a match against the [predicate] is `true`.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public inline fun <T> List<T>.takeLastUntil(predicate: (T) -> Boolean): List<T> {
     val iterator = listIterator(size)
 

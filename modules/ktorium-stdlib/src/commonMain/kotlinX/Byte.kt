@@ -1,11 +1,11 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 
 /**
  * Return [this] if it is not null, otherwise `0`.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun Byte?.orZero(): Byte = this ?: 0
 
 /**
@@ -13,7 +13,7 @@ public fun Byte?.orZero(): Byte = this ?: 0
  *
  * @param bitCount the number of bits to shift to the left
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public infix fun Byte.shl(bitCount: Int): Byte = (this.toInt() shl bitCount).toByte()
 
 /**
@@ -21,11 +21,11 @@ public infix fun Byte.shl(bitCount: Int): Byte = (this.toInt() shl bitCount).toB
  *
  * @param bitCount the number of bits to shift to the right
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public infix fun Byte.shr(bitCount: Int): Byte = (this.toInt() shr bitCount).toByte()
 
 /**
  * Return [this] value if it is not equal to `0`, otherwise, return `null` value.
  */
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun Byte?.takeIfNotZero(): Byte? = takeIf { it != 0.toByte() }

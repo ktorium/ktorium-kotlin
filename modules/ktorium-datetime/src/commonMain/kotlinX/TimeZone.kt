@@ -3,7 +3,7 @@
 package org.ktorium.datetime
 
 import kotlinx.datetime.TimeZone
-import org.ktorium.kotlin.ExperimentalKtorium
+import org.ktorium.kotlin.ExperimentalKtoriumApi
 
-@ExperimentalKtorium
+@ExperimentalKtoriumApi
 public fun TimeZone.Companion.ofOrNull(id: String): TimeZone? = runCatching { of(id) }.getOrNull()
