@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+import org.ktorium.kotlin.gradle.api.includeModule
+
+
 pluginManagement {
     includeBuild("build-logic")
 }
@@ -19,6 +22,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.9.10" apply false
     id("org.jetbrains.kotlinx.kover") version "0.7.5" apply false
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.2" apply false
+    id("build-settings-plugin")
 }
 
 gradle.beforeSettings {
@@ -32,18 +36,3 @@ includeModule("ktorium-platform")
 includeModule("ktorium-datetime")
 includeModule("ktorium-io")
 includeModule("ktorium-annotations")
-
-fun includeModule(name: String) {
-    require(name.isNotBlank())
-
-    include(name)
-    project(":${name}").projectDir = rootDir.resolve("modules/$name")
-}
-
-fun includeBuild(directory: String, name: String) {
-    require(name.isNotBlank())
-
-    val buildModuleDirectory: File = rootDir.resolve("$directory/$name")
-
-    includeBuild(buildModuleDirectory)
-}

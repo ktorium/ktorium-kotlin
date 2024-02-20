@@ -35,9 +35,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("BuildRootPlugin") {
-            id = "build-root-plugin"
-            implementationClass = "org.ktorium.kotlin.gradle.plugins.build.BuildRootPlugin"
+        register("BuildSettingsPlugin") {
+            id = "build-settings-plugin"
+            implementationClass = "org.ktorium.kotlin.gradle.plugins.build.BuildSettingsPlugin"
         }
     }
 }

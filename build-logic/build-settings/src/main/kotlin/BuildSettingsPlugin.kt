@@ -1,11 +1,11 @@
 package org.ktorium.kotlin.gradle.plugins.build
 
 import org.gradle.api.Plugin
-import org.gradle.api.Project
+import org.gradle.api.initialization.Settings
 import org.gradle.util.GradleVersion
 
-public class BuildRootPlugin : Plugin<Project> {
-    override fun apply(project: Project): Unit = with(project) {
+public class BuildSettingsPlugin : Plugin<Settings> {
+    override fun apply(settings: Settings): Unit = with(settings) {
         checkCompatibility()
     }
 

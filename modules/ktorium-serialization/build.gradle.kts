@@ -2,7 +2,6 @@
 
 import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
 import org.ktorium.kotlin.gradle.plugin.api
@@ -13,7 +12,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")
-    id("build-root-plugin")
+    id("build-project-plugin")
     id("build-publication-plugin")
 }
 

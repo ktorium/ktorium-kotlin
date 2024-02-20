@@ -9,7 +9,7 @@ plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.kover")
-    id("build-root-plugin")
+    id("build-project-plugin")
     id("build-publication-plugin")
 }
 

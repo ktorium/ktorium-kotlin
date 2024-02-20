@@ -1,6 +1,6 @@
 plugins {
     id("java-platform")
-    id("build-root-plugin")
+    id("build-project-plugin")
     id("build-publication-plugin")
 }
 

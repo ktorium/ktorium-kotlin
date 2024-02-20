@@ -20,6 +20,7 @@ gradle.beforeSettings {
     rootProject.name = "build-logic"
 }
 
-include("build-root")
+include("build-project")
+include("build-settings")
 include("build-wrapper-upgrade")
 include("build-publication")
