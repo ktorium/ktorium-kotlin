@@ -11,7 +11,7 @@ import org.gradle.util.GradleVersion
 
 private const val DEFAULT_GRADLE_WRAPPER_VERSION: String = "8.6"
 
-public class WrapperUpgradePlugin : Plugin<Project> {
+public class BuildWrapperPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {
         checkCompatibility()
 

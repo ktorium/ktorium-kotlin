@@ -10,7 +10,7 @@ plugins {
     id("org.jetbrains.dokka")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 
-    id("build-wrapper-upgrade")
+    id("build-wrapper-plugin")
 }
 
 allprojects {
