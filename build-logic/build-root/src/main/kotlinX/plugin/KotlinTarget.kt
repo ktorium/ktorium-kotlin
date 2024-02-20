@@ -61,3 +61,7 @@ public val KotlinTarget.buildHost : KonanTarget
 
 public val KotlinTarget.enabled : Boolean
     get() = buildHost == HostManager.host
+
+public fun KonanTarget.supports(hostManager: HostManager): Set<String> {
+    return hostManager.enabledByHost[this]?.mapTo(mutableSetOf()) { target -> target.name } ?: emptySet()
+}

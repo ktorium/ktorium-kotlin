@@ -4,9 +4,9 @@ package org.ktorium.datetime
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public open class FixedClock(
     private val instant: Instant,
 ) : Clock {

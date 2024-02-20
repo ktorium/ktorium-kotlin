@@ -1,11 +1,11 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 internal class StringTest {
 
     @Test

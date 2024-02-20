@@ -3,9 +3,9 @@
 package org.ktorium.datetime
 
 import kotlinx.datetime.Month
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun Month.daysIn(year: Int): Int =
     when (this) {
         Month.JANUARY -> 31

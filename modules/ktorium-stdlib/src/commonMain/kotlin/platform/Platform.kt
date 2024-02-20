@@ -2,7 +2,7 @@
 
 package org.ktorium.kotlin.stdlib.platform
 
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 
 /**
  * List of supported Kotlin runtime platforms.
@@ -14,7 +14,7 @@ public enum class Platform {
     WASM_WASI,
 }
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public expect object RuntimePlatform {
     /**
      * Get the current Kotlin runtime platform.

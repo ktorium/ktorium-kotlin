@@ -2,9 +2,9 @@
 
 package org.ktorium.datetime
 
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public class Year private constructor() {
     public companion object {
         public fun isLeap(year: Int): Boolean =

@@ -1,19 +1,19 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
 /**
  * Checks whether a String only contains digits.
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun CharSequence.isNumeric(): Boolean = all(Char::isDigit)
 
 /**
  * Check if [this] is not `null` or empty string, otherwise, return `false`.
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun CharSequence?.isNotNullOrEmpty(): Boolean {
     return !isNullOrEmpty()
 }
@@ -22,7 +22,7 @@ public fun CharSequence?.isNotNullOrEmpty(): Boolean {
  * Check if [this] is not `null` or consists only of whitespace characters, otherwise, return `false`.
  */
 @ExperimentalContracts
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun CharSequence?.isNotNullOrBlank(): Boolean {
     contract {
         returns(false) implies (this@isNotNullOrBlank != null)
@@ -36,7 +36,7 @@ public fun CharSequence?.isNotNullOrBlank(): Boolean {
  *
  * Reference https://www.romainguy.dev/posts/2024/speeding-up-isblank/
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun CharSequence.isBlankFast(): Boolean {
     for (element in this) {
         if (!element.isWhitespace()) {
@@ -46,5 +46,5 @@ public fun CharSequence.isBlankFast(): Boolean {
     return true
 }
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun CharSequence.isNotBlankFast(): Boolean = !isBlankFast()

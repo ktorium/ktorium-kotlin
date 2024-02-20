@@ -7,42 +7,42 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atTime
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.math.abs
 import kotlin.math.absoluteValue
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.nanoseconds
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public val LocalTime.Companion.MIN: LocalTime
     get() = LocalTime(0, 0)
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public val LocalTime.Companion.MAX: LocalTime
     get() = LocalTime(23, 59, 59, 999_999_999)
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.parseOrNull(isoString: String): LocalTime? = runCatching { parse(isoString) }.getOrNull()
 
 /**
  * Returns true if [time] is a valid time string
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.isValid(time: String): Boolean = parseOrNull(time) != null
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.now(timeZone: TimeZone): LocalTime = LocalDateTime.now(timeZone).time
 
 /**
  * Create a [LocalDateTime] with the specified [time]
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalDate.atTime(time: LocalTime): LocalDateTime = atTime(time.hour, time.minute, time.second)
 
 /**
  * Create a new [LocalDateTime] using given [date]
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.atDate(date: LocalDate): LocalDateTime = LocalDateTime(date, this)
 
 /**
@@ -55,13 +55,13 @@ public fun LocalTime.atDate(date: LocalDate): LocalDateTime = LocalDateTime(date
  * - 00:00:00 -> 0
  * - 05:00:00 -> 50000
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.toInt(): Int = hour * 10000 + minute * 100 + second
 
 /**
  * Calculate distance to the [other] between [LocalTime.MIN] and [LocalTime.MAX]
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public infix fun LocalTime.distanceTo(other: LocalTime): LocalTime = LocalTime.fromSecondOfDay(
     (other.toSecondOfDay() - toSecondOfDay()).absoluteValue
 )
@@ -70,34 +70,34 @@ public infix fun LocalTime.distanceTo(other: LocalTime): LocalTime = LocalTime.f
  * Create a new [LocalDateTime] with the given [time] and [nanos]
  * Preserves [nanos] of previous time
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalDateTime.withTime(time: LocalTime, nanos: Int = nanosecond): LocalDateTime =
     LocalDateTime(year, month, dayOfMonth, time.hour, time.minute, time.second, nanos)
 
 /**
  * Returns this object as [kotlin.time.Duration]
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public val LocalTime.asDuration: Duration get() = toNanosecondOfDay().nanoseconds
 
 /**
  * @return the amount of seconds from this object's value [to]
  * The amount is always positive
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public infix fun LocalTime.distanceInSeconds(to: LocalTime): Int =
     abs(to.hour - hour) * 60 * 60 + abs(to.minute - minute) * 60 + abs(to.second - second)
 
 /** * Get the amount of minutes since midnight.
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public val LocalTime.totalMinutes: Double
     get() = hour * 60 + minute + second.toDouble() / 60
 
 /**
  * Get the amount of seconds since midnight. Convenient for storing [LocalTime] as an [Int] value
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public val LocalTime.totalSeconds: Int
     get() = hour * 3600 + minute * 60 + second
 
@@ -105,7 +105,7 @@ public val LocalTime.totalSeconds: Int
  * Create a new [LocalTime] from [duration].
  * If the [duration] is larger than 24 hours, it will wrap around
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public operator fun LocalTime.Companion.invoke(duration: Duration): LocalTime =
     fromNanosecondOfDay(duration.inWholeNanoseconds)
 
@@ -113,14 +113,14 @@ public operator fun LocalTime.Companion.invoke(duration: Duration): LocalTime =
  * Parse a new time object using the int representation of it.
  * @see LocalTime.toInt
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.ofInt(hms: Int): LocalTime = LocalTime(hms / 10000, hms / 100 % 100, hms % 100)
 
 /**
  * Create a time from milliseconds since midnight.
  * **[millis] is NOT a timestamp**
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.ofMillis(millis: Int): LocalTime = fromMillisecondOfDay(millis)
 
 /**
@@ -128,19 +128,19 @@ public fun LocalTime.Companion.ofMillis(millis: Int): LocalTime = fromMillisecon
  * [seconds] is NOT a timestamp
  * @see totalSeconds
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.ofSeconds(seconds: Int): LocalTime = fromSecondOfDay(seconds)
 
 /**
  * If [this] is [LocalTime.MIN] return null, [this] otherwise
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime?.takeIfNotZero(): LocalTime? = takeIf { it != LocalTime.MIN }
 
 /** example: 12:45:00, 4:30, 7:00 AM, 24 or 12h format, word separator is " ".
  * On a value that is not a valid time, will throw.
  * **/
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.Companion.parseAs12H(s: String): LocalTime {
     try {
         require(s.isNotBlank()) { "Empty time string" }
@@ -166,17 +166,17 @@ public fun LocalTime.Companion.parseAs12H(s: String): LocalTime {
 /**
  * Returns the same time with [LocalTime.nanosecond] set to 0.
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.truncateNanos(): LocalTime = LocalTime(hour, minute, second, 0)
 
 /**
  * Returns the same time with both nanos and seconds set to 0.
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.truncateSeconds(): LocalTime = LocalTime(hour, minute, 0, 0)
 
 /**
  * Returns the same time with all of nanos, seconds and minutes set to 0
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun LocalTime.truncateMinutes(): LocalTime = LocalTime(hour, 0, 0, 0)

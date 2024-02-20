@@ -7,33 +7,33 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import org.ktorium.kotlin.ExperimentalKtoriumApi
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.time.Duration
 
 /**
  * Returns an Instant of Jan 1st 1970  00:00:00.000 UTC.
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public val Instant.Companion.EPOCH: Instant
     get() = fromEpochMilliseconds(0)
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun Instant.Companion.parseOrNull(isoString: String): Instant? = runCatching { parse(isoString) }.getOrNull()
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun Instant.toLocalDate(timeZone: TimeZone): LocalDate = toLocalDateTime(timeZone).date
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun Instant.toLocalTime(timeZone: TimeZone): LocalTime = toLocalDateTime(timeZone).time
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun Instant.durationSince(other: Instant): Duration = this - other
 
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public fun Instant.durationUntil(other: Instant): Duration = other - this
 
 /**
  * Adds a specified [time] to [this]. Returns a new [Instant]
  */
-@ExperimentalKtoriumApi
+@ExperimentalKtoriumAPI
 public operator fun Instant.plus(time: LocalTime): Instant = this + time.asDuration

@@ -86,6 +86,8 @@ kotlin {
     }
 
     sourceSets {
+        applyDefaultHierarchyTemplate()
+
         all {
             languageSettings.apply {
                 apiVersion = ApiVersion.KOTLIN_1_6.toString()
@@ -94,6 +96,8 @@ kotlin {
 
                 optIn("kotlin.contracts.ExperimentalContracts")
                 optIn("kotlin.RequiresOptIn")
+                optIn("org.ktorium.kotlin.ExperimentalKtoriumAPI")
+                optIn("org.ktorium.kotlin.InternalKtoriumAPI")
             }
         }
 
@@ -113,6 +117,18 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
             }
+        }
+
+        val wasmCommonMain by creating {
+            dependsOn(commonMain)
+        }
+
+        val wasmJsMain by getting {
+            dependsOn(wasmCommonMain)
+        }
+
+        val wasmWasiMain by getting {
+            dependsOn(wasmCommonMain)
         }
     }
 
