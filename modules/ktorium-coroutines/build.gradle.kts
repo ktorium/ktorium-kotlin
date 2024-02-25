@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
-import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
-import org.ktorium.kotlin.gradle.plugin.api
+import build.gradle.dsl.withCompilerArguments
+import build.gradle.plugin.api
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")

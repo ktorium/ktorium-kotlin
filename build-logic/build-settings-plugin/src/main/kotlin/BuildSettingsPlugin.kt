@@ -1,4 +1,4 @@
-package org.ktorium.kotlin.gradle.plugins.build
+package build.gradle.plugins.build
 
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings

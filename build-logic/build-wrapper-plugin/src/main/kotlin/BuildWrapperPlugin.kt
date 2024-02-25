@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package org.ktorium.kotlin.gradle.plugins.wrapper
+package build.gradle.plugins.wrapper
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

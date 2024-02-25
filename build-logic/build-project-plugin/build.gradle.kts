@@ -37,7 +37,7 @@ gradlePlugin {
     plugins {
         register("BuildProjectPlugin") {
             id = "build-project-plugin"
-            implementationClass = "org.ktorium.kotlin.gradle.plugins.build.BuildProjectPlugin"
+            implementationClass = "build.gradle.plugins.build.BuildProjectPlugin"
         }
     }
 }

@@ -1,3 +1,3 @@
 gradle.beforeProject {
-    group = "org.ktorium.kotlin.gradle.plugins"
+    group = "build.gradle.plugins"
 }

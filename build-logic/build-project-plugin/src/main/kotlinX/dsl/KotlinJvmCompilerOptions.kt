@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package org.ktorium.kotlin.gradle.dsl
+package build.gradle.dsl
 
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerToolOptions
 

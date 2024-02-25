@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package org.ktorium.kotlin.gradle.api
+package build.gradle.api
 
 import org.gradle.api.initialization.Settings
 

@@ -3,7 +3,7 @@
 import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import org.ktorium.kotlin.gradle.dsl.withCompilerArguments
+import build.gradle.dsl.withCompilerArguments
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")

@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package org.ktorium.kotlin.gradle.plugin
+package build.gradle.plugin
 
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget

@@ -37,7 +37,7 @@ gradlePlugin {
     plugins {
         register("BuildSettingsPlugin") {
             id = "build-settings-plugin"
-            implementationClass = "org.ktorium.kotlin.gradle.plugins.build.BuildSettingsPlugin"
+            implementationClass = "build.gradle.plugins.build.BuildSettingsPlugin"
         }
     }
 }

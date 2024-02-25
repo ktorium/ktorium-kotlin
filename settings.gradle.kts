@@ -1,7 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.ktorium.kotlin.gradle.api.includeModule
-
+import build.gradle.api.includeModule
 
 pluginManagement {
     includeBuild("build-logic")

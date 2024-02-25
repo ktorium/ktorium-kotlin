@@ -17,7 +17,7 @@ gradlePlugin {
     plugins {
         register("BuildWrapperPlugin") {
             id = "build-wrapper-plugin"
-            implementationClass = "org.ktorium.kotlin.gradle.plugins.wrapper.BuildWrapperPlugin"
+            implementationClass = "build.gradle.plugins.wrapper.BuildWrapperPlugin"
         }
     }
 }
