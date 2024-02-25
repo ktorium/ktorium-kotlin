@@ -50,8 +50,8 @@ kotlin {
         browser {
             testTask {
                 useKarma {
+                    useConfigDirectory(rootDir.resolve("gradle/js/karma"))
                     useChromeHeadless()
-                    useConfigDirectory(project.projectDir.resolve("karma.config.d").resolve("wasm"))
                 }
             }
         }
@@ -75,8 +75,8 @@ kotlin {
         browser {
             testTask {
                 useKarma {
+                    useConfigDirectory(rootDir.resolve("gradle/js/karma"))
                     useChromeHeadless()
-                    useConfigDirectory(project.projectDir.resolve("karma.config.d").resolve("js"))
                 }
             }
         }

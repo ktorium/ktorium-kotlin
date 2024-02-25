@@ -25,6 +25,8 @@ public final class org/ktorium/kotlin/stdlib/ByteKt {
 }
 
 public final class org/ktorium/kotlin/stdlib/CharSequenceKt {
+	public static final fun isBlankFast (Ljava/lang/CharSequence;)Z
+	public static final fun isNotBlankFast (Ljava/lang/CharSequence;)Z
 	public static final fun isNotNullOrBlank (Ljava/lang/CharSequence;)Z
 	public static final fun isNotNullOrEmpty (Ljava/lang/CharSequence;)Z
 	public static final fun isNumeric (Ljava/lang/CharSequence;)Z
@@ -66,6 +68,7 @@ public final class org/ktorium/kotlin/stdlib/StandardKt {
 }
 
 public final class org/ktorium/kotlin/stdlib/StringKt {
+	public static final fun compareToIgnoreCase (Ljava/lang/String;Ljava/lang/String;)I
 	public static final fun equalsIgnoreCase (Ljava/lang/String;Ljava/lang/String;)Z
 }
 
@@ -90,7 +93,23 @@ public final class org/ktorium/kotlin/stdlib/collections/ListKt {
 }
 
 public final class org/ktorium/kotlin/stdlib/collections/MutableMapKt {
-	public static final fun computeIfAbsent (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public final class org/ktorium/kotlin/stdlib/collections/MutableMap_jvmKt {
+	public static final fun compute (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
+	public static final fun computeIfAbsent (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun computeIfPresent (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
+	public static final fun merge (Ljava/util/Map;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
+}
+
+public final class org/ktorium/kotlin/stdlib/collections/MutableMap_jvmKt$sam$i$java_util_function_BiFunction$0 : java/util/function/BiFunction {
+	public fun <init> (Lkotlin/jvm/functions/Function2;)V
+	public final synthetic fun apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/ktorium/kotlin/stdlib/collections/MutableMap_jvmKt$sam$i$java_util_function_Function$0 : java/util/function/Function {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun apply (Ljava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class org/ktorium/kotlin/stdlib/platform/Platform : java/lang/Enum {

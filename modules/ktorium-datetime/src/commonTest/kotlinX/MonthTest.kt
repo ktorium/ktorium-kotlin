@@ -1,8 +1,10 @@
 @file:Suppress("PackageDirectoryMismatch")
+@file:OptIn(ExperimentalKtoriumAPI::class)
 
 package org.ktorium.datetime
 
 import kotlinx.datetime.Month
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
