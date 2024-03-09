@@ -4,11 +4,11 @@ import build.gradle.dsl.withCompilerArguments
 import build.gradle.plugin.api
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.kover")
-    id("build-project-plugin")
-    id("build-publication-plugin")
+    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
+    alias(libraryCatalog.plugins.kotlin.dokka)
+    alias(libraryCatalog.plugins.kotlinx.kover)
+    id("build-project-default")
+    id("build-project-publication")
 }
 
 kotlin {
@@ -78,9 +78,8 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
-                api("org.jetbrains.kotlinx", "kotlinx-coroutines-core")
-
+                api(project.dependencies.platform(libraryCatalog.build.kotlinx.coroutines.bom))
+                api(libraryCatalog.build.kotlinx.coroutines.core)
                 api(project(":ktorium-annotations"))
             }
         }
@@ -90,7 +89,7 @@ kotlin {
                 srcDirs("src/commonTest/kotlinX")
             }
             dependencies {
-                api("org.jetbrains.kotlinx", "kotlinx-coroutines-test")
+                api(libraryCatalog.build.kotlinx.coroutines.test)
                 implementation(kotlin("test"))
             }
         }

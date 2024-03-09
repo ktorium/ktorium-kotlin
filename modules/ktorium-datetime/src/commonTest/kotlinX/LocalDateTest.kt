@@ -9,7 +9,7 @@ import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class LocalDateTest {
+class LocalDateTest {
     @Test
     fun startOfDate_valid_validStartOfDay() {
         val expected = LocalDateTime(2023, 12, 25, 0, 0)

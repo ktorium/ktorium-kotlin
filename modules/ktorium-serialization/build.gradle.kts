@@ -4,16 +4,14 @@ import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import build.gradle.dsl.withCompilerArguments
-import build.gradle.plugin.api
 import build.gradle.plugin.implementation
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.kotlin.plugin.serialization")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.kover")
-    id("build-project-plugin")
-    id("build-publication-plugin")
+    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
+    alias(libraryCatalog.plugins.kotlin.dokka)
+    alias(libraryCatalog.plugins.kotlinx.kover)
+    id("build-project-default")
+    id("build-project-publication")
 }
 
 kotlin {
@@ -102,9 +100,8 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform("org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.2"))
-                api("org.jetbrains.kotlinx", "kotlinx-serialization-core")
-                api("org.jetbrains.kotlinx", "kotlinx-serialization-json")
+                api(project.dependencies.platform(libraryCatalog.build.kotlinx.serialization.bom))
+                api(libraryCatalog.build.kotlinx.serialization.core)
 
                 api(project(":ktorium-annotations"))
             }

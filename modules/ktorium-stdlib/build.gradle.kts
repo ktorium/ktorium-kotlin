@@ -6,11 +6,11 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import build.gradle.dsl.withCompilerArguments
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.kover")
-    id("build-project-plugin")
-    id("build-publication-plugin")
+    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
+    alias(libraryCatalog.plugins.kotlin.dokka)
+    alias(libraryCatalog.plugins.kotlinx.kover)
+    id("build-project-default")
+    id("build-project-publication")
 }
 
 kotlin {

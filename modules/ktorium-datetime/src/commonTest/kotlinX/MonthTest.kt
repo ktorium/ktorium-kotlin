@@ -8,7 +8,7 @@ import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class MonthTest {
+class MonthTest {
 
     @Test
     fun daysIn_validMonth_success() {

@@ -1,12 +1,14 @@
 @file:Suppress("PackageDirectoryMismatch")
+@file:OptIn(ExperimentalKtoriumAPI::class)
 
 package org.ktorium.datetime
 
 import kotlinx.datetime.LocalDateTime
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class LocalDateTimeTest {
+class LocalDateTimeTest {
 
     @Test
     fun testParseOrNull() {

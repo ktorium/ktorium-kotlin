@@ -1,11 +1,13 @@
 @file:Suppress("PackageDirectoryMismatch")
+@file:OptIn(ExperimentalKtoriumAPI::class)
 
 package org.ktorium.datetime
 
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-internal class YearTests {
+class YearTests {
 
     @Test
     fun testIsLeap() {

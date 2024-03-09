@@ -1,4 +1,5 @@
 @file:Suppress("PackageDirectoryMismatch")
+@file:OptIn(ExperimentalKtoriumAPI::class)
 
 package org.ktorium.datetime
 
@@ -6,12 +7,13 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
+import org.ktorium.kotlin.ExperimentalKtoriumAPI
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.seconds
 
-internal class InstantTest {
+class InstantTest {
 
     @Test
     fun testDurationSince() {

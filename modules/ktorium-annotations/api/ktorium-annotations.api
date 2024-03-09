@@ -1,6 +1,0 @@
-public abstract interface annotation class org/ktorium/kotlin/ExperimentalKtoriumAPI : java/lang/annotation/Annotation {
-}
-
-public abstract interface annotation class org/ktorium/kotlin/InternalKtoriumAPI : java/lang/annotation/Annotation {
-}
-

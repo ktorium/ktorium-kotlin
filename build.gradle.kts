@@ -10,11 +10,13 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn
 
 plugins {
-    id("io.gitlab.arturbosch.detekt")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.binary-compatibility-validator")
-
-    id("build-wrapper-plugin")
+    id(kotlinCatalog.plugins.multiplatform.get().pluginId) apply false
+    alias(kotlinCatalog.plugins.serialization) apply false
+    alias(libraryCatalog.plugins.kotlinx.kover) apply false
+    alias(libraryCatalog.plugins.kotlinx.bcv)
+    alias(libraryCatalog.plugins.kotlin.dokka)
+    alias(libraryCatalog.plugins.detekt)
+    id("build-project-root-default")
 }
 
 allprojects {
@@ -28,6 +30,7 @@ allprojects {
 }
 
 apiValidation {
+    publicMarkers.add("org.ktorium.kotlin.ExperimentalKtoriumAPI")
     nonPublicMarkers.add("org.ktorium.kotlin.InternalKtorium")
 }
 
@@ -54,7 +57,8 @@ plugins.withType<NodeJsRootPlugin> {
 plugins.withType<YarnPlugin> {
     yarn.apply {
         lockFileDirectory = rootDir.resolve("gradle/js")
-        yarnLockMismatchReport = YarnLockMismatchReport.NONE
+        yarnLockMismatchReport = YarnLockMismatchReport.FAIL
+        yarnLockAutoReplace = true
     }
 }
 

@@ -6,11 +6,11 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import build.gradle.dsl.withCompilerArguments
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.kover")
-    id("build-project-plugin")
-    id("build-publication-plugin")
+    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
+    alias(libraryCatalog.plugins.kotlin.dokka)
+    alias(libraryCatalog.plugins.kotlinx.kover)
+    id("build-project-default")
+    id("build-project-publication")
 }
 
 kotlin {
@@ -99,7 +99,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-io-core:0.3.1")
+                api(libraryCatalog.build.kotlinx.io.core)
 
                 api(project(":ktorium-annotations"))
             }

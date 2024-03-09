@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
-
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
@@ -30,14 +28,37 @@ kotlin {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
+    implementation(kotlinCatalog.gradle.plugin)
 }
 
 gradlePlugin {
     plugins {
-        register("BuildProjectPlugin") {
-            id = "build-project-plugin"
-            implementationClass = "build.gradle.plugins.build.BuildProjectPlugin"
+        register("ProjectDefaultPlugin") {
+            id = "build-project-default"
+            implementationClass = "build.gradle.plugins.build.ProjectDefaultPlugin"
         }
     }
+    plugins {
+        register("ProjectWrapperPlugin") {
+            id = "build-project-wrapper"
+            implementationClass = "build.gradle.plugins.build.ProjectWrapperPlugin"
+        }
+    }
+    plugins {
+        register("ProjectRootDefaultPlugin") {
+            id = "build-project-root-default"
+            implementationClass = "build.gradle.plugins.build.ProjectRootDefaultPlugin"
+        }
+    }
+    plugins {
+        register("ProjectPublicationPlugin") {
+            id = "build-project-publication"
+            implementationClass = "build.gradle.plugins.build.ProjectPublicationPlugin"
+        }
+    }
+}
+
+tasks.withType<ValidatePlugins>().configureEach {
+    failOnWarning.set(true)
+    enableStricterValidation.set(true)
 }

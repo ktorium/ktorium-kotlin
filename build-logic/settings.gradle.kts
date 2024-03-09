@@ -1,26 +1,21 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
+    includeBuild("../build-logic-settings")
+}
+
+plugins {
+    id("build-settings-default")
 }
 
 dependencyResolutionManagement {
-    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
-
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
+    versionCatalogs {
+        create("libraryCatalog") {
+            from(files("../gradle/catalogs/library.versions.toml"))
+        }
     }
 }
 
-gradle.beforeSettings {
-    rootProject.name = "build-logic"
-}
+rootProject.name = "build-logic"
 
 include("build-project-plugin")
-include("build-settings-plugin")
-include("build-publication-plugin")
-include("build-wrapper-plugin")

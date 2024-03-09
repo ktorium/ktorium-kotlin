@@ -6,11 +6,11 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import build.gradle.dsl.withCompilerArguments
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.kover")
-    id("build-project-plugin")
-    id("build-publication-plugin")
+    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
+    alias(libraryCatalog.plugins.kotlin.dokka)
+    alias(libraryCatalog.plugins.kotlinx.kover)
+    id("build-project-default")
+    id("build-project-publication")
 }
 
 kotlin {
@@ -42,21 +42,6 @@ kotlin {
 
             languageVersion = mainJvmCompiler
         }
-    }
-
-    wasmJs {
-        moduleName = "ktorium-kotlin-datetime"
-
-        browser {
-            testTask {
-                useKarma {
-                    useConfigDirectory(rootDir.resolve("gradle/js/karma"))
-                    useChromeHeadless()
-                }
-            }
-        }
-
-        binaries.library()
     }
 
     js {
@@ -95,7 +80,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+                api(libraryCatalog.build.kotlinx.datetime)
 
                 api(project(":ktorium-annotations"))
             }

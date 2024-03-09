@@ -1,8 +1,10 @@
 plugins {
     id("java-platform")
-    id("build-project-plugin")
-    id("build-publication-plugin")
+    id("build-project-default")
+    id("build-project-publication")
 }
+
+description = "ktorium-kotlin BOM"
 
 val bomProject = project
 
@@ -26,7 +28,7 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("ktoriumPlatform") {
+        create<MavenPublication>("ktorium-platform") {
             from(components["javaPlatform"])
         }
     }

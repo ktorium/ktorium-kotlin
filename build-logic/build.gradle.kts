@@ -1,3 +1,1 @@
-gradle.beforeProject {
-    group = "build.gradle.plugins"
-}
+group = "build.gradle.plugins"

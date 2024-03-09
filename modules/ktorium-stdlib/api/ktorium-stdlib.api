@@ -92,37 +92,10 @@ public final class org/ktorium/kotlin/stdlib/collections/ListKt {
 	public static final fun takeLastUntil (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
 }
 
-public final class org/ktorium/kotlin/stdlib/collections/MutableMapKt {
-}
-
 public final class org/ktorium/kotlin/stdlib/collections/MutableMap_jvmKt {
 	public static final fun compute (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
 	public static final fun computeIfAbsent (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun computeIfPresent (Ljava/util/Map;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
 	public static final fun merge (Ljava/util/Map;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function2;)Ljava/lang/Object;
-}
-
-public final class org/ktorium/kotlin/stdlib/collections/MutableMap_jvmKt$sam$i$java_util_function_BiFunction$0 : java/util/function/BiFunction {
-	public fun <init> (Lkotlin/jvm/functions/Function2;)V
-	public final synthetic fun apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-}
-
-public final class org/ktorium/kotlin/stdlib/collections/MutableMap_jvmKt$sam$i$java_util_function_Function$0 : java/util/function/Function {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun apply (Ljava/lang/Object;)Ljava/lang/Object;
-}
-
-public final class org/ktorium/kotlin/stdlib/platform/Platform : java/lang/Enum {
-	public static final field JS Lorg/ktorium/kotlin/stdlib/platform/Platform;
-	public static final field JVM Lorg/ktorium/kotlin/stdlib/platform/Platform;
-	public static final field WASM_JS Lorg/ktorium/kotlin/stdlib/platform/Platform;
-	public static final field WASM_WASI Lorg/ktorium/kotlin/stdlib/platform/Platform;
-	public static fun valueOf (Ljava/lang/String;)Lorg/ktorium/kotlin/stdlib/platform/Platform;
-	public static fun values ()[Lorg/ktorium/kotlin/stdlib/platform/Platform;
-}
-
-public final class org/ktorium/kotlin/stdlib/platform/RuntimePlatform {
-	public static final field INSTANCE Lorg/ktorium/kotlin/stdlib/platform/RuntimePlatform;
-	public final fun currentPlatform ()Lorg/ktorium/kotlin/stdlib/platform/Platform;
 }
 

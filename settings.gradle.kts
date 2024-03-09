@@ -3,30 +3,23 @@
 import build.gradle.api.includeModule
 
 pluginManagement {
+    includeBuild("build-logic-settings")
     includeBuild("build-logic")
 }
 
-dependencyResolutionManagement {
-    repositoriesMode = RepositoriesMode.PREFER_PROJECT
+plugins {
+    id("build-settings-default")
+}
 
-    repositories {
-        mavenCentral()
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libraryCatalog") {
+            from(files("./gradle/catalogs/library.versions.toml"))
+        }
     }
 }
 
-plugins {
-    kotlin("multiplatform") version "1.9.22" apply false
-    kotlin("plugin.serialization") version "1.9.22" apply false
-    id("io.gitlab.arturbosch.detekt") version "1.23.4" apply false
-    id("org.jetbrains.dokka") version "1.9.10" apply false
-    id("org.jetbrains.kotlinx.kover") version "0.7.5" apply false
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.2" apply false
-    id("build-settings-plugin")
-}
-
-gradle.beforeSettings {
-    rootProject.name = "ktorium-kotlin"
-}
+rootProject.name = "ktorium-kotlin"
 
 includeModule("ktorium-stdlib")
 includeModule("ktorium-coroutines")
@@ -35,3 +28,4 @@ includeModule("ktorium-platform")
 includeModule("ktorium-datetime")
 includeModule("ktorium-io")
 includeModule("ktorium-annotations")
+includeModule("ktorium-version-catalog")

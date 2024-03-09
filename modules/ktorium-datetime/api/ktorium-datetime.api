@@ -5,9 +5,6 @@ public class org/ktorium/datetime/FixedClock : kotlinx/datetime/Clock {
 	public final fun nowOrNull ()Lkotlinx/datetime/Instant;
 }
 
-public final class org/ktorium/datetime/FixedClock$Companion {
-}
-
 public final class org/ktorium/datetime/InstantKt {
 	public static final fun durationSince (Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;)J
 	public static final fun durationUntil (Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;)J
@@ -16,11 +13,6 @@ public final class org/ktorium/datetime/InstantKt {
 	public static final fun plus (Lkotlinx/datetime/Instant;Lkotlinx/datetime/LocalTime;)Lkotlinx/datetime/Instant;
 	public static final fun toLocalDate (Lkotlinx/datetime/Instant;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalDate;
 	public static final fun toLocalTime (Lkotlinx/datetime/Instant;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/LocalTime;
-}
-
-public final class org/ktorium/datetime/Instant_jvmKt {
-	public static final fun minusDays (Ljava/time/Instant;J)Ljava/time/Instant;
-	public static final fun plusDays (Ljava/time/Instant;J)Ljava/time/Instant;
 }
 
 public final class org/ktorium/datetime/LocalDateKt {
@@ -87,9 +79,5 @@ public final class org/ktorium/datetime/TimeZoneKt {
 
 public final class org/ktorium/datetime/Year {
 	public static final field Companion Lorg/ktorium/datetime/Year$Companion;
-}
-
-public final class org/ktorium/datetime/Year$Companion {
-	public final fun isLeap (I)Z
 }
 
