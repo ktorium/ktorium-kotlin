@@ -40,3 +40,10 @@ public inline fun <T> List<T>.takeLastUntil(predicate: (T) -> Boolean): List<T> 
 
     return toList()
 }
+
+@ExperimentalSince(Unreleased)
+public fun <T> List<T>.forEachIndexedReversed(action: (index: Int, T) -> Unit) {
+    for (i in lastIndex..0) {
+        action.invoke(i, this.elementAt(i))
+    }
+}

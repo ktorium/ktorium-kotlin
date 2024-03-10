@@ -185,3 +185,11 @@ public inline fun <reified T> Any?.unsafeCast(): T {
 
     return this as T
 }
+
+@ExperimentalSince(Unreleased)
+public fun hashCodeOf(first: Any, vararg others: Any): Int {
+    val prime = 31
+    var result: Int = prime + first.hashCode()
+    others.forEach { result = prime * result + it.hashCode() }
+    return result
+}
