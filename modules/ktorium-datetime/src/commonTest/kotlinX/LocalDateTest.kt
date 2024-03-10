@@ -1,14 +1,14 @@
 @file:Suppress("PackageDirectoryMismatch")
-@file:OptIn(ExperimentalKtoriumAPI::class)
 
 package org.ktorium.datetime
 
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@OptIn(ExperimentalSince::class)
 class LocalDateTest {
     @Test
     fun startOfDate_valid_validStartOfDay() {

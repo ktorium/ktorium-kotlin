@@ -3,24 +3,25 @@
 
 package org.ktorium.kotlin.stdlib.collections
 
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
 import org.ktorium.kotlin.InternalKtoriumAPI
+import org.ktorium.kotlin.KtoriumVersion.Unreleased
 
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public actual inline fun <K, V> MutableMap<K, V>.merge(
     key: K,
     value: V & Any,
     mappingFunction: (V & Any, V & Any) -> V?
 ): V? = internalMergeImpl(key, value, mappingFunction)
 
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public actual inline fun <K, V> MutableMap<K, V>.compute(key: K, crossinline mappingFunction: (K, V?) -> V?): V? =
     internalComputeImpl(key, mappingFunction)
 
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public actual inline fun <K, V> MutableMap<K, V>.computeIfAbsent(key: K, crossinline mappingFunction: (K) -> V): V =
     internalComputeIfAbsentImpl(key, mappingFunction)
 
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public actual inline fun <K, V> MutableMap<K, V>.computeIfPresent(key: K, crossinline mappingFunction: (K, V & Any) -> V?): V? =
     internalComputeIfPresentImpl(key, mappingFunction)

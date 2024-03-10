@@ -1,10 +1,11 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
+import org.ktorium.kotlin.KtoriumVersion.Unreleased
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 internal class PairTest {
 
     @Test

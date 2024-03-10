@@ -1,23 +1,24 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
+import org.ktorium.kotlin.KtoriumVersion.Unreleased
 
 /**
  * Drops the first element.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public fun <T> Array<out T>.dropFirst(): List<T> = drop(1)
 
 /**
  * Drop the last element.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public fun <T> Array<out T>.dropLast(): List<T> = dropLast(1)
 
 /**
  * Drop the leading elements until a match against the [predicate] is `true`.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.dropUntil(predicate: (T) -> Boolean): List<T> {
     var yielding = false
     val list = mutableListOf<T>()
@@ -36,7 +37,7 @@ public inline fun <T> Array<out T>.dropUntil(predicate: (T) -> Boolean): List<T>
 /**
  * Drop the last elements until a match against the [predicate] is `true`.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.dropLastUntil(predicate: (T) -> Boolean): List<T> {
     for (index in lastIndex downTo 0) {
         if (predicate(this[index])) {
@@ -50,7 +51,7 @@ public inline fun <T> Array<out T>.dropLastUntil(predicate: (T) -> Boolean): Lis
 /**
  * Returns the first element matching the given [predicate], otherwise, return [defaultValue] value.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.firstOrDefault(predicate: (T) -> Boolean, defaultValue: T): T {
     return firstOrNull(predicate) ?: defaultValue
 }
@@ -58,7 +59,7 @@ public inline fun <T> Array<out T>.firstOrDefault(predicate: (T) -> Boolean, def
 /**
  * Returns the first element matching the given [predicate], otherwise, return the result of calling [block] function.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.firstOrElse(predicate: (T) -> Boolean, block: () -> T): T {
     return firstOrNull(predicate) ?: block()
 }
@@ -66,7 +67,7 @@ public inline fun <T> Array<out T>.firstOrElse(predicate: (T) -> Boolean, block:
 /**
  * Returns the last element matching the given [predicate], otherwise, return [defaultValue] value.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.lastOrDefault(predicate: (T) -> Boolean, defaultValue: T): T {
     return lastOrNull(predicate) ?: defaultValue
 }
@@ -74,7 +75,7 @@ public inline fun <T> Array<out T>.lastOrDefault(predicate: (T) -> Boolean, defa
 /**
  * Returns the last element matching the given [predicate], otherwise, return the result of calling [block] function.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.lastOrElse(predicate: (T) -> Boolean, block: () -> T): T {
     return lastOrNull(predicate) ?: block()
 }
@@ -82,7 +83,7 @@ public inline fun <T> Array<out T>.lastOrElse(predicate: (T) -> Boolean, block: 
 /**
  * Take the last elements until a match against the [predicate] is `true`.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.takeLastUntil(predicate: (T) -> Boolean): List<T> {
     for (index in lastIndex downTo 0) {
         if (predicate(this[index])) {
@@ -96,7 +97,7 @@ public inline fun <T> Array<out T>.takeLastUntil(predicate: (T) -> Boolean): Lis
 /**
  * Take the leading elements until a match against the [predicate] is `true`.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public inline fun <T> Array<out T>.takeUntil(predicate: (T) -> Boolean): List<T> {
     for (item in this.withIndex()) {
         if (predicate(item.value)) {

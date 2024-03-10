@@ -1,13 +1,14 @@
 package org.ktorium.kotlin.stdlib
 
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
+import org.ktorium.kotlin.KtoriumVersion.Unreleased
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
 /**
  * Returns [this] value if it is not `null`, otherwise false.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 @ExperimentalContracts
 public fun Boolean?.orFalse(): Boolean {
     contract {
@@ -20,7 +21,7 @@ public fun Boolean?.orFalse(): Boolean {
 /**
  * Returns [this] value if it is not `null`, otherwise true.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 @ExperimentalContracts
 public fun Boolean?.orTrue(): Boolean {
     contract {
@@ -33,5 +34,5 @@ public fun Boolean?.orTrue(): Boolean {
 /**
  * Return `1` if [this] is `true`, otherwise return `0` value.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public fun Boolean.toInt(): Int = if (this) 1 else 0

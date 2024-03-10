@@ -1,14 +1,14 @@
 @file:Suppress("PackageDirectoryMismatch")
-@file:OptIn(ExperimentalKtoriumAPI::class)
 
 package org.ktorium.datetime
 
 import kotlinx.datetime.TimeZone
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
+@OptIn(ExperimentalSince::class)
 class TimeZoneTest {
 
     @Test
@@ -22,6 +22,6 @@ class TimeZoneTest {
 
     @Test
     fun ofOrNull_invalidTimeZone_success() {
-        assertNull(TimeZone.ofOrNull("America/Moscow"))
+        assertNull(TimeZone.ofOrNull("America/Europe"))
     }
 }

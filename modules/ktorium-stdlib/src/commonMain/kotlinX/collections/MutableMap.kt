@@ -1,14 +1,15 @@
 package org.ktorium.kotlin.stdlib.collections
 
-import org.ktorium.kotlin.ExperimentalKtoriumAPI
+import org.ktorium.kotlin.ExperimentalSince
 import org.ktorium.kotlin.InternalKtoriumAPI
+import org.ktorium.kotlin.KtoriumVersion.Unreleased
 
 /**
  * Provide [key] and [value], and if the value corresponding to [key] does not exist in `map`, this key-value pair will be stored.
  * If there is a record that conflicts with [key], then use the [remapping] function to calculate the new value from the current value and the old value.
  * Store the new value when the calculated new value is not `null`, otherwise remove the old value.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public expect inline fun <K, V> MutableMap<K, V>.merge(
     key: K,
     value: V & Any,
@@ -20,14 +21,14 @@ public expect inline fun <K, V> MutableMap<K, V>.merge(
  * Where [K] of [remapping] is [key], [V] is the value that already exists in `map` that matches [key], if not, it is `null`.
  * When the evaluation result of [remapping] is not `null`, insert this value and return it, otherwise delete the original value (if any) and return `null`.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public expect inline fun <K, V> MutableMap<K, V>.compute(key: K, crossinline mappingFunction: (K, V?) -> V?): V?
 
 /**
  * Retrieves the element corresponding to [key] from this map if it already exists, otherwise,
  * creates it by calling [remapping] and saving the result to the map.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public expect inline fun <K, V> MutableMap<K, V>.computeIfAbsent(key: K, crossinline mappingFunction: (K) -> V): V
 
 /**
@@ -35,7 +36,7 @@ public expect inline fun <K, V> MutableMap<K, V>.computeIfAbsent(key: K, crossin
  * Then the calculated value is returned after calculation and storage through [mappingFunction], otherwise `null` is returned directly.
  * If [mappingFunction] evaluates to `null`, the original value will be removed and `null` will be returned.
  */
-@ExperimentalKtoriumAPI
+@ExperimentalSince(Unreleased)
 public expect inline fun <K, V> MutableMap<K, V>.computeIfPresent(key: K, crossinline mappingFunction: (K, V & Any) -> V?): V?
 
 @InternalKtoriumAPI
