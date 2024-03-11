@@ -2,7 +2,7 @@
 
 package build.gradle.dsl
 
-public class KotlinCompilerArgumentsBuilder {
+public class KotlinCommonCompilerOptionsBuilder {
     private val arguments: MutableList<String> = mutableListOf()
 
     public fun add(arg: String): Boolean = arguments.add(arg)
