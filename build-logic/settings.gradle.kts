@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
-    includeBuild("../build-logic-settings")
+    includeBuild("../build-settings-logic")
 }
 
 plugins {
@@ -10,12 +10,10 @@ plugins {
 
 dependencyResolutionManagement {
     versionCatalogs {
-        create("libraryCatalog") {
-            from(files("../gradle/catalogs/library.versions.toml"))
+        create("buildCatalog") {
+            from(files("../gradle/catalogs/buildCatalog.versions.toml"))
         }
     }
 }
 
 rootProject.name = "build-logic"
-
-include("build-project-plugin")

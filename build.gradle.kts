@@ -10,13 +10,12 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn
 
 plugins {
-    id(kotlinCatalog.plugins.multiplatform.get().pluginId) apply false
-    alias(kotlinCatalog.plugins.serialization) apply false
-    alias(libraryCatalog.plugins.kotlinx.kover) apply false
-    alias(libraryCatalog.plugins.kotlinx.bcv)
-    alias(libraryCatalog.plugins.kotlin.dokka)
-    alias(libraryCatalog.plugins.detekt)
-    id("build-project-root-default")
+    id(buildCatalog.plugins.kotlin.multiplatform.get().pluginId) apply false
+    alias(buildCatalog.plugins.kotlin.serialization) apply false
+    alias(buildCatalog.plugins.kotlinx.kover) apply false
+    alias(buildCatalog.plugins.kotlinx.bcv)
+    alias(buildCatalog.plugins.kotlin.dokka)
+    alias(buildCatalog.plugins.detekt)
 }
 
 allprojects {

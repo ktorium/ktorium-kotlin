@@ -1,17 +1,16 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
+import build.gradle.dsl.withCompilerArguments
+import build.gradle.plugin.implementation
 import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import build.gradle.dsl.withCompilerArguments
-import build.gradle.plugin.implementation
 
 plugins {
-    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
-    alias(libraryCatalog.plugins.kotlin.dokka)
-    alias(libraryCatalog.plugins.kotlinx.kover)
+    id(buildCatalog.plugins.kotlin.multiplatform.get().pluginId)
+    alias(buildCatalog.plugins.kotlin.dokka)
+    alias(buildCatalog.plugins.kotlinx.kover)
     id("build-project-default")
-    id("build-project-publication")
 }
 
 kotlin {
@@ -100,8 +99,8 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform(libraryCatalog.build.kotlinx.serialization.bom))
-                api(libraryCatalog.build.kotlinx.serialization.core)
+                api(project.dependencies.platform(buildCatalog.build.kotlinx.serialization.bom))
+                api(buildCatalog.build.kotlinx.serialization.core)
 
                 api(project(":ktorium-annotations"))
             }

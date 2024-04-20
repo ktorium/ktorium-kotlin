@@ -1,16 +1,15 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
+import build.gradle.dsl.withCompilerArguments
 import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import build.gradle.dsl.withCompilerArguments
 
 plugins {
-    id(kotlinCatalog.plugins.multiplatform.get().pluginId)
-    alias(libraryCatalog.plugins.kotlin.dokka)
-    alias(libraryCatalog.plugins.kotlinx.kover)
+    id(buildCatalog.plugins.kotlin.multiplatform.get().pluginId)
+    alias(buildCatalog.plugins.kotlin.dokka)
+    alias(buildCatalog.plugins.kotlinx.kover)
     id("build-project-default")
-    id("build-project-publication")
 }
 
 kotlin {
@@ -80,7 +79,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(libraryCatalog.build.kotlinx.datetime)
+                api(buildCatalog.build.kotlinx.datetime)
 
                 api(project(":ktorium-annotations"))
             }

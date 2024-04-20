@@ -6,8 +6,7 @@ import org.gradle.api.tasks.wrapper.Wrapper
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
 import org.gradle.kotlin.dsl.named
 
-// TODO
-private const val DEFAULT_GRADLE_WRAPPER_VERSION: String = "8.6"
+private const val DEFAULT_GRADLE_WRAPPER_VERSION: String = "8.7"
 
 public class ProjectWrapperPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = with(project) {

@@ -15,12 +15,10 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("libraryCatalog") {
-            from(files("../gradle/catalogs/library.versions.toml"))
+        create("buildCatalog") {
+            from(files("../gradle/catalogs/buildCatalog.versions.toml"))
         }
     }
 }
 
-rootProject.name = "build-logic-settings"
-
-include("build-settings-plugin")
+rootProject.name = "build-settings-logic"

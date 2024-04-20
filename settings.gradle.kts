@@ -1,9 +1,7 @@
-@file:Suppress("UnstableApiUsage")
-
 import build.gradle.api.includeModule
 
 pluginManagement {
-    includeBuild("build-logic-settings")
+    includeBuild("build-settings-logic")
     includeBuild("build-logic")
 }
 
@@ -13,8 +11,8 @@ plugins {
 
 dependencyResolutionManagement {
     versionCatalogs {
-        create("libraryCatalog") {
-            from(files("./gradle/catalogs/library.versions.toml"))
+        create("buildCatalog") {
+            from(files("./gradle/catalogs/buildCatalog.versions.toml"))
         }
     }
 }
@@ -24,8 +22,6 @@ rootProject.name = "ktorium-kotlin"
 includeModule("ktorium-stdlib")
 includeModule("ktorium-coroutines")
 includeModule("ktorium-serialization")
-includeModule("ktorium-platform")
 includeModule("ktorium-datetime")
 includeModule("ktorium-io")
 includeModule("ktorium-annotations")
-includeModule("ktorium-version-catalog")

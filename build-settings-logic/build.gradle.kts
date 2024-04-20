@@ -19,19 +19,8 @@ sourceSets {
     }
 }
 
-kotlin {
-    explicitApi()
-
-    jvmToolchain {
-        val mainJvmCompiler = providers.gradleProperty("kotlin.javaToolchain.mainJvmCompiler").map(JavaLanguageVersion::of)
-
-        languageVersion = mainJvmCompiler
-    }
-}
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
-    implementation(libraryCatalog.build.gradle.foojay)
 }
 
 gradlePlugin {
@@ -39,18 +28,6 @@ gradlePlugin {
         register("SettingsDefaultPlugin") {
             id = "build-settings-default"
             implementationClass = "build.gradle.plugins.settings.SettingsDefaultPlugin"
-        }
-    }
-    plugins {
-        register("SettingsRepositoryPlugin") {
-            id = "build-settings-repository"
-            implementationClass = "build.gradle.plugins.settings.SettingsRepositoryPlugin"
-        }
-    }
-    plugins {
-        register("SettingsKotlinVersionCatalogPlugin") {
-            id = "build-settings-kotlin-version-catalog"
-            implementationClass = "build.gradle.plugins.settings.SettingsKotlinVersionCatalogPlugin"
         }
     }
     plugins {
