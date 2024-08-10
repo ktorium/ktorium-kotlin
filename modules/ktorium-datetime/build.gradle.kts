@@ -6,9 +6,9 @@ import org.jetbrains.kotlin.config.LanguageVersion
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    id(buildCatalog.plugins.kotlin.multiplatform.get().pluginId)
-    alias(buildCatalog.plugins.kotlin.dokka)
-    alias(buildCatalog.plugins.kotlinx.kover)
+    id(libraries.plugins.kotlin.multiplatform.get().pluginId)
+    alias(libraries.plugins.kotlin.dokka)
+    alias(libraries.plugins.kotlinx.kover)
     id("build-project-default")
 }
 
@@ -79,7 +79,7 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(buildCatalog.build.kotlinx.datetime)
+                api(libraries.build.kotlinx.datetime)
 
                 api(project(":ktorium-annotations"))
             }

@@ -1,13 +1,22 @@
-<h1 style="text-align: center;">ktorium-kotlin</h1>
+# ktorium-kotlin
 
-<p style="text-align: center;">
-    <a href="https://kotlinlang.org">
-        <img alt="Kotlin Version" src="https://img.shields.io/badge/kotlin-1.9.22-blue.svg?logo=kotlin">
-    </a>
-    <a href="https://github.com/ktorium/ktorium-kotlin/blob/main/LICENSE">
-        <img alt="License" src="https://img.shields.io/github/license/ktorium/ktorium-kotlin" />
-    </a>
-</p>
+![![kotlin](https://kotlinlang.org/)](https://img.shields.io/badge/kotlin--multiplatform-2.0.10-blue.svg?logo=kotlin) ![![License](https://github.com/nirmato/nirmato-ollama/blob/main/LICENSE.md)](https://img.shields.io/github/license/nirmato/nirmato-ollama)
+
+![badge][badge-jvm] ![badge][badge-js] ![badge][badge-nodejs] ![badge][badge-wasm-js]
+
+[badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg?style=flat
+[badge-jvm]: http://img.shields.io/badge/-jvm-DB413D.svg?style=flat
+[badge-js]: http://img.shields.io/badge/-js-F8DB5D.svg?style=flat
+[badge-nodejs]: https://img.shields.io/badge/-nodejs-68a063.svg?style=flat
+[badge-wasm-js]: https://img.shields.io/badge/-wasm--js-306850.svg?style=flat
+[badge-wasm]: https://img.shields.io/badge/-wasm-624FE8.svg?style=flat
+[badge-linux]: http://img.shields.io/badge/-linux-2D3F6C.svg?style=flat
+[badge-windows]: http://img.shields.io/badge/-windows-4D76CD.svg?style=flat
+[badge-apple-silicon]: http://img.shields.io/badge/support-[AppleSilicon]-43BBFF.svg?style=flat
+[badge-ios]: http://img.shields.io/badge/-ios-CDCDCD.svg?style=flat
+[badge-mac]: http://img.shields.io/badge/-macos-111111.svg?style=flat
+[badge-watchos]: http://img.shields.io/badge/-watchos-C0C0C0.svg?style=flat
+[badge-tvos]: http://img.shields.io/badge/-tvos-808080.svg?style=flat
 
 ## Overview
 
@@ -17,32 +26,7 @@ Kotlin extensions of official libraries.
 > ktorium-kotlin is under development.
 >
 > Report any issue or bug <a href="/issues">in the GitHub repository.</a>
-> 
- 
-## Compatibility
-
-<table>
-    <thead>
-        <tr>
-            <th><strong>ktorium-kotlin</strong></th>
-            <th><strong>Kotlin API</strong></th>
-            <th><strong>Kotlin Coroutines</strong></th>
-            <th><strong>Kotlin Serialization</strong></th>
-            <th><strong>Kotlin DateTime</strong></th>
-            <th><strong>Kotlin IO</strong></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0.0.1</td>
-            <td>1.6</td>
-            <td>1.7.3</td>
-            <td>1.6.2</td>
-            <td>0.5.0</td>
-            <td>0.3.1</td>
-        </tr>
-    </tbody>
-</table>
+>
 
 ## Contributions
 

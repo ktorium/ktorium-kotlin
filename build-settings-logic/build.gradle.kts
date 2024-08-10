@@ -11,16 +11,24 @@ configurations.all {
     }
 }
 
-sourceSets {
-    main {
-        kotlin {
-            srcDirs("src/main/kotlinX")
-        }
-    }
-}
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
+}
+
+kotlin {
+    explicitApi()
+
+    compilerOptions {
+        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    }
+
+    sourceSets {
+        main {
+            kotlin {
+                srcDirs("src/main/kotlinX")
+            }
+        }
+    }
 }
 
 gradlePlugin {
@@ -28,12 +36,6 @@ gradlePlugin {
         register("SettingsDefaultPlugin") {
             id = "build-settings-default"
             implementationClass = "build.gradle.plugins.settings.SettingsDefaultPlugin"
-        }
-    }
-    plugins {
-        register("SettingsGradlePlugin") {
-            id = "build-settings-gradle"
-            implementationClass = "build.gradle.plugins.settings.SettingsGradlePlugin"
         }
     }
 }

@@ -9,14 +9,6 @@ plugins {
     id("build-settings-default")
 }
 
-dependencyResolutionManagement {
-    versionCatalogs {
-        create("buildCatalog") {
-            from(files("./gradle/catalogs/buildCatalog.versions.toml"))
-        }
-    }
-}
-
 rootProject.name = "ktorium-kotlin"
 
 includeModule("ktorium-stdlib")

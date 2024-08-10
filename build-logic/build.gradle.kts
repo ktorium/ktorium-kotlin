@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
+
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
@@ -9,25 +11,27 @@ configurations.all {
     }
 }
 
-sourceSets {
-    main {
-        kotlin {
-            srcDirs("src/main/kotlinX")
-        }
-    }
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinPluginVersion()}")
 }
 
-dependencies {
-    implementation(buildCatalog.build.gradle.plugin)
+kotlin {
+    explicitApi()
+
+    compilerOptions {
+        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    }
+
+    sourceSets {
+        main {
+            kotlin {
+                srcDirs("src/main/kotlinX")
+            }
+        }
+    }
 }
 
 gradlePlugin {
-    plugins {
-        register("ProjectWrapperPlugin") {
-            id = "build-project-wrapper"
-            implementationClass = "build.gradle.plugins.build.ProjectWrapperPlugin"
-        }
-    }
     plugins {
         register("ProjectDefaultPlugin") {
             id = "build-project-default"

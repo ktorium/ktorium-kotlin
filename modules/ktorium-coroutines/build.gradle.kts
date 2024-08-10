@@ -4,9 +4,9 @@ import org.jetbrains.kotlin.config.ApiVersion
 import org.jetbrains.kotlin.config.LanguageVersion
 
 plugins {
-    id(buildCatalog.plugins.kotlin.multiplatform.get().pluginId)
-    alias(buildCatalog.plugins.kotlin.dokka)
-    alias(buildCatalog.plugins.kotlinx.kover)
+    id(libraries.plugins.kotlin.multiplatform.get().pluginId)
+    alias(libraries.plugins.kotlin.dokka)
+    alias(libraries.plugins.kotlinx.kover)
     id("build-project-default")
 }
 
@@ -77,8 +77,8 @@ kotlin {
                 srcDirs("src/commonMain/kotlinX")
             }
             dependencies {
-                api(project.dependencies.platform(buildCatalog.build.kotlinx.coroutines.bom))
-                api(buildCatalog.build.kotlinx.coroutines.core)
+                api(project.dependencies.platform(libraries.build.kotlinx.coroutines.bom))
+                api(libraries.build.kotlinx.coroutines.core)
                 api(project(":ktorium-annotations"))
             }
         }
@@ -88,7 +88,7 @@ kotlin {
                 srcDirs("src/commonTest/kotlinX")
             }
             dependencies {
-                api(buildCatalog.build.kotlinx.coroutines.test)
+                api(libraries.build.kotlinx.coroutines.test)
                 implementation(kotlin("test"))
             }
         }
